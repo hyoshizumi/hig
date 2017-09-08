@@ -42,6 +42,8 @@ import TextLinkSection from "./sections/TextLinkSection";
 import FlyoutSection from "./sections/FlyoutSection"
 import RichTextSection from "./sections/RichTextSection";
 
+import NewButtonAdapter from '../adapters/NewButtonAdapter';
+
 class Playground extends React.Component {
   constructor(props) {
     super(props);
@@ -96,6 +98,7 @@ class Playground extends React.Component {
         activeModuleId={this.state.activeModuleId}
         showSubNav={true}
       >
+        <NewButtonAdapter />
         <section>
           <h3>Tabs</h3>
           <Button title="Add tab before" onClick={this.addTabBefore} />
