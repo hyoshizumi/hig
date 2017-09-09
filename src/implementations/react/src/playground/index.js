@@ -98,7 +98,7 @@ class Playground extends React.Component {
         activeModuleId={this.state.activeModuleId}
         showSubNav={true}
       >
-        <NewButtonAdapter />
+        <NewButtonAdapter type="secondary" title="Adapt" disabled={true} />
         <section>
           <h3>Tabs</h3>
           <Button title="Add tab before" onClick={this.addTabBefore} />
