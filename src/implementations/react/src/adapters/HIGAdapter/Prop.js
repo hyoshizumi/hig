@@ -36,9 +36,7 @@ class Prop extends Component {
     return props.instance[props.setter](props.value);
   }
 
-  render() {
-    return null;
-  }
+  render() { return null; }
 }
 
 export default Prop;

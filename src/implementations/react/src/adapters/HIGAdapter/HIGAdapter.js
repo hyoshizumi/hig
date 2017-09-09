@@ -13,15 +13,16 @@ class HIGAdapter extends Component {
     this.state = { mounted: false };
   }
 
+  setEl = (el) => { this._el = el; }
+
   componentDidMount() {
     this._mount = this._el.parentNode;
     this._anchor = document.createComment(`${this.props.name}-anchor`);
-    this._mount.replaceChild(this._anchor, this._el);
-    this.instance.mount(this._mount, this._anchor);
+    this._mount.replaceChild(this._anchor, this._el); // Replace this component's div with a comment
+    this.instance.mount(this._mount, this._anchor); // Mount the hig component at the comment
     this.setState({ mounted: true });
   }
 
-  setEl = (el) => { this._el = el; }
 
   render() {
     let children = this.state.mounted
