@@ -7,6 +7,10 @@ class HIGAdapter extends Component {
     name: PropTypes.string.isRequired
   }
 
+  static contextTypes = {
+    parent: PropTypes.object
+  }
+
   constructor(props) {
     super(props);
     this.instance = new props.HIGConstructor({});
@@ -16,13 +20,15 @@ class HIGAdapter extends Component {
   setEl = (el) => { this._el = el; }
 
   componentDidMount() {
-    this._mount = this._el.parentNode;
-    this._anchor = document.createComment(`${this.props.name}-anchor`);
-    this._mount.replaceChild(this._anchor, this._el); // Replace this component's div with a comment
-    this.instance.mount(this._mount, this._anchor); // Mount the hig component at the comment
+    if (!this.context.parent) {
+      // Has React parent
+      this._mount = this._el.parentNode;
+      this._anchor = document.createComment(`${this.props.name}-anchor`);
+      this._mount.replaceChild(this._anchor, this._el); // Replace this component's div with a comment
+      this.instance.mount(this._mount, this._anchor); // Mount the hig component at the comment
+    }
     this.setState({ mounted: true });
   }
-
 
   render() {
     let children = this.state.mounted

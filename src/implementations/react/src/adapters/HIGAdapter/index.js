@@ -1,4 +1,6 @@
 export { default } from './HIGAdapter';
-export { default as Prop } from './Prop';
+export { default as AnyChild } from './AnyChild';
 export { default as EventHandler } from './EventHandler';
-export { default as ReactChildren } from './ReactChildren';
+export { default as HIGChild } from './HIGChild';
+export { default as HIGParent } from './HIGParent';
+export { default as Prop } from './Prop';

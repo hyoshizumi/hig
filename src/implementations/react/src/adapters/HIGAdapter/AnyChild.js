@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
-export default class ReactChildren extends Component {
+export default class AnyChild extends Component {
   static propTypes = {
     children: PropTypes.node,
     setter: PropTypes.string
+  }
+
+  static childContextTypes = {
+    parent: PropTypes.object
   }
 
   constructor(props) {
@@ -33,5 +37,9 @@ export default class ReactChildren extends Component {
   render() {
     const { children, ...rest } = this.props;
     return <div ref={this.setEl}>{children}</div>;
+  }
+
+  getChildContext() {
+    return { parent: null };
   }
 }

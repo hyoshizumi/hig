@@ -25,23 +25,8 @@ import logo from './images/bim-logo.png';
 import { projects, accounts } from './fixtures/topNavFixtures';
 import { modules, submodules, links } from './fixtures/sideNavFixtures';
 
-import ButtonSection from './sections/ButtonSection';
-import DropdownSection from './sections/DropdownSection';
-import IconButtonSection from './sections/IconButtonSection';
-import CheckboxSection from './sections/CheckboxSection';
-import RadioButtonSection from './sections/RadioButtonSection';
-import RangeSection from './sections/RangeSection';
-import TextFieldSection from './sections/TextFieldSection';
-import TextAreaSection from './sections/TextAreaSection';
-import PasswordFieldSection from './sections/PasswordFieldSection';
-import SpacerSection from './sections/SpacerSection';
-import ModalSection from './sections/ModalSection';
-import TypographySection from './sections/TypographySection';
-import TableSection from "./sections/TableSection";
-import TextLinkSection from "./sections/TextLinkSection";
-import FlyoutSection from "./sections/FlyoutSection"
-import RichTextSection from "./sections/RichTextSection";
-
+import NewGlobalNavAdapter from '../adapters/NewGlobalNavAdapter';
+import NewTopNavAdapter from '../adapters/NewTopNavAdapter';
 import NewButtonAdapter from '../adapters/NewButtonAdapter';
 import NewSpacerAdapter from '../adapters/NewSpacerAdapter';
 
@@ -90,42 +75,14 @@ class Playground extends React.Component {
     };
 
     return (
-      <GlobalNav
-        modules={modules}
-        onModuleChange={this.navigate}
-        sideNav={sideNavProps}
-        submodules={submodules}
-        topNav={topNavProps}
-        activeModuleId={this.state.activeModuleId}
-        showSubNav={true}
-      >
-        <NewSpacerAdapter inset="xxl">
-          <NewButtonAdapter onClick={() => console.log('clicked') } type="secondary" title="Adapt" />
-        </NewSpacerAdapter>
-        
-        <section>
-          <h3>Tabs</h3>
-          <Button title="Add tab before" onClick={this.addTabBefore} />
-          <Button title="Add tab after" onClick={this.addTabAfter} />
-          <Button title="Remove tab" onClick={this.removeTab} />
-        </section>
-        <ButtonSection />
-        <IconButtonSection />
-        <CheckboxSection />
-        <PasswordFieldSection />
-        <RadioButtonSection />
-        <RangeSection />
-        <SpacerSection />
-        <TextFieldSection />
-        <TextAreaSection />
-        <ModalSection />
-        <DropdownSection />
-        <TypographySection />
-        <TableSection/>
-        <TextLinkSection/>
-        <FlyoutSection />
-        <RichTextSection />
-      </GlobalNav>
+      <div>
+        <NewGlobalNavAdapter>
+          <NewTopNavAdapter />
+          <NewSpacerAdapter inset="xxl">
+            <NewButtonAdapter onClick={() => console.log('clicked') } type="secondary" title="Adapt" />
+          </NewSpacerAdapter>
+        </NewGlobalNavAdapter>
+      </div>
     );
   }
 }
