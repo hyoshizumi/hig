@@ -43,6 +43,7 @@ import FlyoutSection from "./sections/FlyoutSection"
 import RichTextSection from "./sections/RichTextSection";
 
 import NewButtonAdapter from '../adapters/NewButtonAdapter';
+import NewSpacerAdapter from '../adapters/NewSpacerAdapter';
 
 class Playground extends React.Component {
   constructor(props) {
@@ -98,7 +99,10 @@ class Playground extends React.Component {
         activeModuleId={this.state.activeModuleId}
         showSubNav={true}
       >
-        <NewButtonAdapter onClick={() => console.log('clicked') } type="secondary" title="Adapt" />
+        <NewSpacerAdapter inset="xxl">
+          <NewButtonAdapter onClick={() => console.log('clicked') } type="secondary" title="Adapt" />
+        </NewSpacerAdapter>
+        
         <section>
           <h3>Tabs</h3>
           <Button title="Add tab before" onClick={this.addTabBefore} />
