@@ -1,10 +1,11 @@
+import * as HIG from 'hig-vanilla';
 
 import * as PropTypes from 'prop-types';
 import createComponent from '../../createComponent';
 import HIGElement from '../../../elements/HIGElement';
-import * as HIG from 'hig-vanilla';
 
-const HIGModuleCollapse = HIG.GlobalNav._partials.SideNav._partials.Group._partials.Module._partials.Collapse;
+const HIGModuleCollapse =
+  HIG.GlobalNav._partials.SideNav._partials.Group._partials.Module._partials.Collapse;
 
 export class ModuleCollapseAdapter extends HIGElement {
   constructor(props) {
@@ -23,7 +24,7 @@ export class ModuleCollapseAdapter extends HIGElement {
     }
   }
 
-  commitUpdate(updatePayload, oldProps, newProp) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -49,7 +50,7 @@ export class ModuleCollapseAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }

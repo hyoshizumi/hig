@@ -7,25 +7,15 @@ import TopNavAdapter from './TopNavAdapter';
 import ProjectAccountSwitcherAdapter from './ProjectAccountSwitcherAdapter';
 import AccountAdapter from './AccountAdapter';
 
-const onItemClick = function() {
-  return 'onItemClick';
-};
-
-const onClickOutside = function() {
-  return 'onClickOutside';
-};
-
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <TopNavAdapter>
-        <ProjectAccountSwitcherAdapter>
-          <AccountAdapter {...props} />
-        </ProjectAccountSwitcherAdapter>
-      </TopNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const Context = props => (
+  <GlobalNavAdapter>
+    <TopNavAdapter>
+      <ProjectAccountSwitcherAdapter>
+        <AccountAdapter {...props} />
+      </ProjectAccountSwitcherAdapter>
+    </TopNavAdapter>
+  </GlobalNavAdapter>
+);
 
 function createOrionAccount(props) {
   const reactContainer = document.createElement('div');
@@ -60,8 +50,8 @@ function createHigContext(props) {
 describe('<Account>', () => {
   it('renders an Account', () => {
     const defaults = {};
-    const { higContainer, higItem } = createHigContext(defaults);
-    const { reactWrapper, reactContainer } = createOrionAccount(defaults);
+    const { higContainer } = createHigContext(defaults);
+    const { reactContainer } = createOrionAccount(defaults);
 
     expect(reactContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -99,7 +89,7 @@ describe('<Account>', () => {
 
   it('warns when passed an unsupported property', () => {
     const warnSpy = jest.fn();
-    const { reactWrapper, reactContainer } = createOrionAccount({});
+    const { reactWrapper } = createOrionAccount({});
     console.warn = warnSpy;
 
     reactWrapper.setProps({ realProp: false });
@@ -107,10 +97,10 @@ describe('<Account>', () => {
     expect(warnSpy).toHaveBeenCalled();
   });
 
-  ['onClick'].forEach(eventName => {
+  ['onClick'].forEach((eventName) => {
     it(`handles ${eventName}`, () => {
       const warnSpy = jest.fn();
-      const { reactWrapper, reactContainer } = createOrionAccount({});
+      const { reactWrapper } = createOrionAccount({});
       console.warn = warnSpy;
 
       reactWrapper.setProps({ [eventName]: () => {} });

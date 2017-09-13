@@ -17,12 +17,12 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
-import { text, select } from '@storybook/addon-knobs';
+import { select } from '@storybook/addon-knobs';
 
 import Button from '../adapters/ButtonAdapter';
 
 storiesOf('Button', module)
-  .addWithInfo('Standard Button', ``, () => {
+  .addWithInfo('Standard Button', '', () => {
     const sizeOptions = {
       small: 'Small',
       standard: 'Standard',
@@ -50,7 +50,7 @@ storiesOf('Button', module)
       />
     );
   })
-  .addWithInfo('Disabled Button', ``, () => {
+  .addWithInfo('Disabled Button', '', () => {
     const sizeOptions = {
       small: 'Small',
       standard: 'Standard',
@@ -75,7 +75,7 @@ storiesOf('Button', module)
         onHover={action('on hover')}
         onBlur={action('on blur')}
         onFocus={action('on focus')}
-        disabled={true}
+        disabled
       />
     );
   });

@@ -23,6 +23,14 @@ import TextAreaAdapter from './TextAreaAdapter';
 const inputId = '1234';
 
 describe('<TextAreaAdapter>', () => {
+  function setLabelForInputId(higContainer) {
+    // to adjust for the randomly generated id
+    const label = higContainer.querySelector('label');
+    const input = higContainer.querySelector('textarea');
+    label.setAttribute('for', inputId);
+    input.setAttribute('id', inputId);
+  }
+
   function createHigTextArea(defaults = {}) {
     const higContainer = document.createElement('div');
 
@@ -38,20 +46,12 @@ describe('<TextAreaAdapter>', () => {
     return <TextAreaAdapter {...props} />;
   }
 
-  function setLabelForInputId(higContainer) {
-    // to adjust for the randomly generated id
-    const label = higContainer.querySelector('label');
-    const input = higContainer.querySelector('textarea');
-    label.setAttribute('for', inputId);
-    input.setAttribute('id', inputId);
-  }
-
   it('renders a text field', () => {
     const defaults = { name: 'mySpecialField' };
 
-    const { higTextArea, higContainer } = createHigTextArea(defaults);
+    const { higContainer } = createHigTextArea(defaults);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionTextArea(defaults), {
+    mount(createOrionTextArea(defaults), {
       attachTo: container
     });
     setLabelForInputId(container);
@@ -72,9 +72,9 @@ describe('<TextAreaAdapter>', () => {
       value: 'Rex'
     };
 
-    const { higTextArea, higContainer } = createHigTextArea(defaults);
+    const { higContainer } = createHigTextArea(defaults);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionTextArea(defaults), {
+    mount(createOrionTextArea(defaults), {
       attachTo: container
     });
     setLabelForInputId(container);
@@ -125,7 +125,7 @@ describe('<TextAreaAdapter>', () => {
     );
   });
 
-  ['onBlur', 'onChange', 'onFocus', 'onInput'].forEach(eventName => {
+  ['onBlur', 'onChange', 'onFocus', 'onInput'].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
       const spy = jest.fn();
       const container = document.createElement('div');
@@ -137,7 +137,7 @@ describe('<TextAreaAdapter>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });
@@ -155,7 +155,7 @@ describe('<TextAreaAdapter>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });

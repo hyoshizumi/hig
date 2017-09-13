@@ -8,14 +8,12 @@ class FlyoutSection extends Component {
     this.state = { isOpen: false };
   }
 
-  myFlyoutContent = () => {
-    return (
-      <div>
-        <h3>Important flyout information</h3>
-        <p>You can put what ever you want in here.</p>
-      </div>
-    );
-  };
+  myFlyoutContent = () => (
+    <div>
+      <h3>Important flyout information</h3>
+      <p>You can put what ever you want in here.</p>
+    </div>
+  );
 
   render() {
     return (
@@ -25,10 +23,10 @@ class FlyoutSection extends Component {
           anchorPoint="bottom-left"
           content={this.myFlyoutContent()}
         >
-           <Button title="Open flyout"/>
+          <Button title="Open flyout" />
         </Flyout>
       </PlaygroundSection>
-    )
+    );
   }
 }
 export default FlyoutSection;

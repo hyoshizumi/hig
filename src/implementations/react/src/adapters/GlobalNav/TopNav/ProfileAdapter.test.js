@@ -6,34 +6,32 @@ import React from 'react';
 import GlobalNavAdapter from '../../GlobalNav/GlobalNavAdapter';
 import TopNavAdapter from './TopNavAdapter';
 import ProfileAdapter from './ProfileAdapter';
+import SharedExamples from '../../../SharedExamples.test';
 
-const onImageClick = function() {
-  return 'onImageClick';
-};
-const onSignoutClick = function() {
-  return 'onSignoutClick';
-};
+const onImageClick = () => 'onImageClick';
 
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <TopNavAdapter>
-        <ProfileAdapter
-          open={props.open}
-          image={props.image}
-          onProfileImageClick={onImageClick}
-          name={props.name}
-          email={props.email}
-          signOutLabel={props.signOutLabel}
-          signOutLink={props.signOutLink}
-          onSignOutClick={onSignoutClick}
-          profileSettingsLabel={props.profileSettingsLabel}
-          profileSettingsLink={props.profileSettingsLink}
-        />
-      </TopNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const onSignoutClick = () => 'onSignoutClick';
+
+/* eslint-disable react/prop-types */
+const Context = props => (
+  <GlobalNavAdapter>
+    <TopNavAdapter>
+      <ProfileAdapter
+        open={props.open}
+        image={props.image}
+        onProfileImageClick={onImageClick}
+        name={props.name}
+        email={props.email}
+        signOutLabel={props.signOutLabel}
+        signOutLink={props.signOutLink}
+        onSignOutClick={onSignoutClick}
+        profileSettingsLabel={props.profileSettingsLabel}
+        profileSettingsLink={props.profileSettingsLink}
+      />
+    </TopNavAdapter>
+  </GlobalNavAdapter>
+);
+/* eslint-enable react/prop-types */
 
 function createHigContext(defaults) {
   const higContainer = document.createElement('div');
@@ -66,15 +64,6 @@ describe('<Profile>', () => {
     it('has a good snapshot', () => {
       const { reactContainer } = setupProfile();
       expect(reactContainer.firstChild.outerHTML).toMatchSnapshot();
-    });
-  });
-  describe('events handlers', () => {
-    it('It can set onProfileClickOutside', () => {
-      const foo = {
-        onProfileClickOutside: 'PropTypes.func',
-        onSignOutClick: 'PropTypes.func',
-        onProfileImageClick: 'PropTypes.func'
-      };
     });
   });
 
@@ -125,7 +114,7 @@ describe('<Profile>', () => {
       }
     ];
 
-    configSets.forEach(function(config) {
+    configSets.forEach((config) => {
       it(`can set props for ${config.key}`, () => {
         shex.verifyPropsSet(config);
       });
@@ -136,19 +125,9 @@ describe('<Profile>', () => {
   });
 
   describe('open and close profile flyout', () => {
-    const newContext = props => {
-      return (
-        <GlobalNavAdapter>
-          <TopNavAdapter>
-            <ProfileAdapter open={props.open} />
-          </TopNavAdapter>
-        </GlobalNavAdapter>
-      );
-    };
-
     it('sets the flyout as open if initialized as open', () => {
       const reactContainer = document.createElement('div');
-      const wrapper = mount(<Context {...{ open: true }} />, {
+      mount(<Context {...{ open: true }} />, {
         attachTo: reactContainer
       });
       const elem = reactContainer.getElementsByClassName(
@@ -162,7 +141,7 @@ describe('<Profile>', () => {
       const wrapper = mount(<Context {...{ open: false }} />, {
         attachTo: reactContainer
       });
-      var elem = reactContainer.getElementsByClassName('hig__flyout');
+      let elem = reactContainer.getElementsByClassName('hig__flyout');
       expect(elem.length).toEqual(1);
 
       wrapper.setProps({ open: true });

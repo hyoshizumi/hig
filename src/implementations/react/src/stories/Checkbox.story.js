@@ -19,54 +19,44 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { text, boolean } from '@storybook/addon-knobs';
 
-import { default as Checkbox } from '../adapters/FormElements/CheckboxAdapter';
+import Checkbox from '../adapters/FormElements/CheckboxAdapter';
 
 storiesOf('Checkbox', module)
-  .addWithInfo('Basic checkbox', '', () => {
-    return (
+  .addWithInfo('Basic checkbox', '', () => (
+    <Checkbox
+      name={text('checkboxName', 'basic')}
+      value={text('checkboxValue', 'yes')}
+      label={text('checkboxLabel', 'A checkbox')}
+    />
+  ))
+  .addWithInfo('with other options', '', () => (
+    <div>
       <Checkbox
-        name={text('checkboxName', 'basic')}
-        value={text('checkboxValue', 'yes')}
-        label={text('checkboxLabel', 'A checkbox')}
+        name="is_it_fancy"
+        value="fanciness"
+        label="Fancy!"
+        checked={false}
+        required={text('Required text', 'This field is required.')}
+        disabled={false}
       />
-    );
-  })
-  .addWithInfo('with other options', '', () => {
-    const valueOptions = {
-      extra: '2',
-      really: '1',
-      basic: '0'
-    };
-
-    return (
-      <div>
-        <Checkbox
-          name="is_it_fancy"
-          value="fanciness"
-          label="Fancy!"
-          checked={false}
-          required={text('Required text', "This field is required.")}
-          disabled={false}
-        />
-        <Checkbox
-          name="checkbox-checked"
-          value="hello"
-          label="checked"
-          checked={boolean('Checked', true)}
-        />
-        <Checkbox
-          name="checkbox-disabled"
-          value="hello"
-          label="disabled"
-          disabled={boolean('Disabled', true)}
-        />
-      </div>
-    );
-  })
+      <Checkbox
+        name="checkbox-checked"
+        value="hello"
+        label="checked"
+        checked={boolean('Checked', true)}
+      />
+      <Checkbox
+        name="checkbox-disabled"
+        value="hello"
+        label="disabled"
+        disabled={boolean('Disabled', true)}
+      />
+    </div>
+  ))
   .addWithInfo('with Events defined', '', () => {
-    var localName = 'sdfsdffsd';
-    var localValue = 'hello';
-    var localLabel = 'Greetings';
+    const localName = 'sdfsdffsd';
+    const localValue = 'hello';
+    const localLabel = 'Greetings';
 
     return (
       <Checkbox

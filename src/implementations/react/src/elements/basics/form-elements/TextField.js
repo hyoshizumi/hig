@@ -1,14 +1,14 @@
-
+/* eslint-disable react/prop-types, no-console */
 import React, { Component } from 'react';
-import TextFieldAdapter
-  from '../../../adapters/FormElements/TextFieldAdapter.js';
 import * as PropTypes from 'prop-types';
+import TextFieldAdapter
+  from '../../../adapters/FormElements/TextFieldAdapter';
 
 class TextField extends Component {
   constructor(props) {
     super(props);
 
-    const controlled = props.value === undefined ? false : true;
+    const controlled = props.value !== undefined;
 
     this.state = {
       value: this.getDefaultValue(),
@@ -23,9 +23,8 @@ class TextField extends Component {
       return value;
     } else if (defaultValue !== undefined) {
       return defaultValue;
-    } else {
-      return '';
     }
+    return '';
   }
 
   getRenderedValue() {
@@ -33,12 +32,15 @@ class TextField extends Component {
 
     if (value !== undefined) {
       return value;
-    } else {
-      return this.state.value;
     }
+    return this.state.value;
   }
 
-  handleInput = event => {
+  setTextFieldEl = (textFieldEl) => {
+    this.textFieldEl = textFieldEl;
+  };
+
+  handleInput = (event) => {
     if (this.props.onInput) {
       this.props.onInput(event);
     }
@@ -51,10 +53,6 @@ class TextField extends Component {
     } else {
       this.setState({ value: event.target.value });
     }
-  };
-
-  setTextFieldEl = textFieldEl => {
-    this.textFieldEl = textFieldEl;
   };
 
   render() {

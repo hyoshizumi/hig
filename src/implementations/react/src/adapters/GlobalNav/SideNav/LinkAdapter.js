@@ -4,7 +4,7 @@ import createComponent from '../../createComponent';
 import HIGElement from '../../../elements/HIGElement';
 
 export class LinkAdapter extends HIGElement {
-  commitUpdate(updatePayload, oldProps, newProp) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -45,7 +45,7 @@ export class LinkAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }

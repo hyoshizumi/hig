@@ -7,19 +7,14 @@ import React from 'react';
 import GlobalNav from '../../../adapters/GlobalNav/GlobalNavAdapter';
 import SideNav from './SideNavAdapter';
 import Search from './SearchAdapter';
-import Group from './GroupAdapter';
-import Module from './ModuleAdapter';
-import Submodule from './SubmoduleAdapter';
 
-const Context = props => {
-  return (
-    <GlobalNav>
-      <SideNav>
-        <Search {...props} />
-      </SideNav>
-    </GlobalNav>
-  );
-};
+const Context = props => (
+  <GlobalNav>
+    <SideNav>
+      <Search {...props} />
+    </SideNav>
+  </GlobalNav>
+);
 
 function createOrionComponent(defaults) {
   const orionContainer = document.createElement('div');
@@ -46,8 +41,8 @@ function createHigComponent(defaults = {}) {
 describe('<SearchAdapter>', () => {
   it('renders', () => {
     const defaults = {};
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -61,8 +56,8 @@ describe('<SearchAdapter>', () => {
       placeholder: 'Search a little search for me',
       value: 'Documents'
     };
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -95,7 +90,7 @@ describe('<SearchAdapter>', () => {
 
   it('warns when passed an unsupported property', () => {
     const warnSpy = jest.fn();
-    const { orionContainer, orionWrapper } = createOrionComponent({});
+    const { orionWrapper } = createOrionComponent({});
     console.warn = warnSpy;
 
     orionWrapper.setProps({ realProp: false });
@@ -103,10 +98,10 @@ describe('<SearchAdapter>', () => {
     expect(warnSpy).toHaveBeenCalled();
   });
 
-  ['onClearIconClick', 'onInput', 'onFocus', 'onBlur'].forEach(eventName => {
+  ['onClearIconClick', 'onInput', 'onFocus', 'onBlur'].forEach((eventName) => {
     it(`handles ${eventName}`, () => {
       const warnSpy = jest.fn();
-      const { orionContainer, orionWrapper } = createOrionComponent({});
+      const { orionWrapper } = createOrionComponent({});
       console.warn = warnSpy;
 
       orionWrapper.setProps({ [eventName]: () => {} });

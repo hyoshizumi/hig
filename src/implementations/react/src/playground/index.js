@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /**
  Copyright 2016 Autodesk,Inc.
 
@@ -15,9 +16,9 @@
 
  */
 import React from 'react';
-import { Button, GlobalNav } from '../hig-react';
-
 import 'hig-vanilla/lib/hig.css';
+
+import { Button, GlobalNav } from '../hig-react';
 import './index.css';
 
 import logo from './images/bim-logo.png';
@@ -37,11 +38,11 @@ import PasswordFieldSection from './sections/PasswordFieldSection';
 import SpacerSection from './sections/SpacerSection';
 import ModalSection from './sections/ModalSection';
 import TypographySection from './sections/TypographySection';
-import TableSection from "./sections/TableSection";
-import TextLinkSection from "./sections/TextLinkSection";
-import FlyoutSection from "./sections/FlyoutSection"
-import RichTextSection from "./sections/RichTextSection";
-import AvatarSection from "./sections/AvatarSection";
+import TableSection from './sections/TableSection';
+import TextLinkSection from './sections/TextLinkSection';
+import FlyoutSection from './sections/FlyoutSection';
+import RichTextSection from './sections/RichTextSection';
+import AvatarSection from './sections/AvatarSection';
 
 class Playground extends React.Component {
   constructor(props) {
@@ -57,30 +58,30 @@ class Playground extends React.Component {
   }
 
   projectClicked = (id) => {
-    console.log("project clicked", id);
+    console.log('project clicked', id);
   }
 
   accountClicked = (id) => {
-    console.log("account clicked", id);
+    console.log('account clicked', id);
   }
 
   render() {
     const topNavProps = {
-      accounts: accounts,
-      projects: projects,
-      accountTitle: "Accounts",
-      projectTitle: "Projects",
+      accounts,
+      projects,
+      accountTitle: 'Accounts',
+      projectTitle: 'Projects',
       onProjectClick: this.projectClicked,
       onAccountClick: this.accountClicked,
       logo,
-      onLogoClick: function() { console.log('Logo clicked'); }
-    }
+      onLogoClick() { console.log('Logo clicked'); }
+    };
 
     const sideNavProps = {
-      superHeaderLabel: "HIG",
-      headerLabel: "Playground",
-      links: links,
-      onLogoClick: event => {
+      superHeaderLabel: 'HIG',
+      headerLabel: 'Playground',
+      links,
+      onLogoClick: (event) => {
         event.preventDefault();
         console.log('Logo clicked');
       },
@@ -88,8 +89,13 @@ class Playground extends React.Component {
       slot: (
         <div>
           <Button title="Designer Toolkit" link="https://github.com/Autodesk/hig" />
-          <p></p>
-          <Button title="Git Repository" type="secondary" link="https://github.com/Autodesk/hig" target="_blank" />
+          <p />
+          <Button
+            title="Git Repository"
+            type="secondary"
+            link="https://github.com/Autodesk/hig"
+            target="_blank"
+          />
         </div>
       )
     };
@@ -102,7 +108,7 @@ class Playground extends React.Component {
         submodules={submodules}
         topNav={topNavProps}
         activeModuleId={this.state.activeModuleId}
-        showSubNav={true}
+        showSubNav
       >
         <ButtonSection />
         <IconButtonSection />
@@ -116,12 +122,12 @@ class Playground extends React.Component {
         <ModalSection />
         <DropdownSection />
         <TypographySection />
-        <TableSection/>
-        <TextLinkSection/>
+        <TableSection />
+        <TextLinkSection />
         <FlyoutSection />
         <RichTextSection />
         <AvatarSection />
-        </GlobalNav>
+      </GlobalNav>
     );
   }
 }

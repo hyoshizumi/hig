@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PlaygroundSection from '../PlaygroundSection';
 import { Dropdown } from '../../hig-react';

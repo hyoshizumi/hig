@@ -14,8 +14,8 @@ limitations under the License.
 
  */
 
-import HIGElement from '../../../elements/HIGElement';
 import * as PropTypes from 'prop-types';
+import HIGElement from '../../../elements/HIGElement';
 import createComponent from '../../createComponent';
 
 export class SearchAdapter extends HIGElement {
@@ -24,7 +24,7 @@ export class SearchAdapter extends HIGElement {
     this.hig.onClearIconClick(this.topNavClearInput.bind(this));
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     const mapping = {
       placeholder: 'setPlaceholder',
       query: 'setQuery'
@@ -37,7 +37,7 @@ export class SearchAdapter extends HIGElement {
     this.hig.setQuery(event.target.value);
   }
 
-  topNavClearInput(event) {
+  topNavClearInput() {
     this.hig.setQuery('');
     this.hig.hideClearIcon();
   }

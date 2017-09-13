@@ -6,11 +6,11 @@ export class ProfileAdapter extends HIGElement {
   constructor(HIGConstructor, initialProps) {
     super(HIGConstructor, initialProps);
 
-    ['openProfile', 'closeProfile'].forEach(fn => {
+    ['openProfile', 'closeProfile'].forEach((fn) => {
       this[fn] = this[fn].bind(this);
     });
   }
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -109,7 +109,7 @@ export class ProfileAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }

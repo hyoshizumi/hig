@@ -38,9 +38,9 @@ describe('<PasswordField>', () => {
   it('renders a text field', () => {
     const defaults = { name: 'mySpecialField' };
 
-    const { higPasswordField, higContainer } = createHigPasswordField(defaults);
+    const { higContainer } = createHigPasswordField(defaults);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionPasswordField(defaults), {
+    mount(createOrionPasswordField(defaults), {
       attachTo: container
     });
 
@@ -64,7 +64,7 @@ describe('<PasswordField>', () => {
     const { higPasswordField, higContainer } = createHigPasswordField(defaults);
     higPasswordField.required(defaults.required);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionPasswordField(defaults), {
+    mount(createOrionPasswordField(defaults), {
       attachTo: container
     });
 
@@ -111,7 +111,7 @@ describe('<PasswordField>', () => {
     );
   });
 
-  ['onBlur', 'onChange', 'onFocus', 'onInput'].forEach(eventName => {
+  ['onBlur', 'onChange', 'onFocus', 'onInput'].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
       const spy = jest.fn();
       const container = document.createElement('div');
@@ -121,7 +121,7 @@ describe('<PasswordField>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });

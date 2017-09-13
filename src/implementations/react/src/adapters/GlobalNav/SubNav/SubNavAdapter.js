@@ -50,7 +50,7 @@ export class SubNavAdapter extends HIGElement {
     instance.unmount();
   }
 
-  commitUpdate(updatePayload, oldProps, newProp) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -69,7 +69,7 @@ export class SubNavAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }

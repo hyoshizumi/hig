@@ -15,9 +15,9 @@
 
  */
 import * as HIG from 'hig-vanilla';
+import * as PropTypes from 'prop-types';
 
 import HIGElement from '../../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 import createComponent from '../createComponent';
 
 class TextAreaAdapter extends HIGElement {
@@ -26,29 +26,29 @@ class TextAreaAdapter extends HIGElement {
   }
 
   componentDidMount() {
-    var commitProps = [];
+    const commitProps = [];
     if (this.initialProps.disabled) {
-      commitProps.push('disabled',this.initialProps.disabled);
+      commitProps.push('disabled', this.initialProps.disabled);
     }
     if (this.initialProps.required) {
-      commitProps.push('required',this.initialProps.required);
+      commitProps.push('required', this.initialProps.required);
     }
     if (this.initialProps.onBlur) {
-      commitProps.push('onBlur',this.initialProps.onBlur);
+      commitProps.push('onBlur', this.initialProps.onBlur);
     }
     if (this.initialProps.onChange) {
-      commitProps.push('onChange',this.initialProps.onChange);
+      commitProps.push('onChange', this.initialProps.onChange);
     }
     if (this.initialProps.onFocus) {
-      commitProps.push('onFocus',this.initialProps.onFocus);
+      commitProps.push('onFocus', this.initialProps.onFocus);
     }
     if (this.initialProps.onInput) {
-      commitProps.push('onInput',this.initialProps.onInput);
+      commitProps.push('onInput', this.initialProps.onInput);
     }
     this.commitUpdate(commitProps);
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -178,7 +178,8 @@ TextAreaComponent.__docgenInfo = {
       description: 'callback called when user moves focus away from the text field'
     },
     onChange: {
-      description: 'callback called when user changes the value of the text field and moves focus away'
+      description:
+        'callback called when user changes the value of the text field and moves focus away'
     },
     onFocus: {
       description: 'callback called when user moves focus onto the text field'

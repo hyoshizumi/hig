@@ -16,6 +16,7 @@
     "lib/*.css"
   ],
   "devDependencies": {
+    "@storybook/addon-actions": "^3.2.6",
     "@storybook/addon-info": "^3.1.0",
     "@storybook/addon-knobs": "^3.2.0",
     "@storybook/react": "^3.1.0",

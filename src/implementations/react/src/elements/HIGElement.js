@@ -36,7 +36,7 @@ export default class HIGElement {
 
     this.mounted = true;
 
-    Object.keys(this.events).forEach(eventName => {
+    Object.keys(this.events).forEach((eventName) => {
       this.addHIGEventListener(eventName, this.events[eventName]);
     });
 
@@ -59,7 +59,7 @@ export default class HIGElement {
     this.componentDidUnmount();
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate() {
     /* no-op */
     // sub-classes should implement if they need to
   }
@@ -71,14 +71,14 @@ export default class HIGElement {
 
     // in this case we are setting up a new event
     const dispose = this.hig[eventName](eventFn);
-    this._disposeFunctions.set(eventName + 'Dispose', dispose);
+    this._disposeFunctions.set(`${eventName}Dispose`, dispose);
     this.events[eventName] = eventFn;
   }
 
   requireSingleInstance(instance, requiredSinglesList) {
     const name = instance.constructor.name;
     if (requiredSinglesList.includes(name) && this[name.toLowerCase()]) {
-      throw new Error('only one ' + name + ' is allowed');
+      throw new Error(`only one ${name} is allowed`);
     }
   }
 }

@@ -1,4 +1,5 @@
-
+/* eslint-disable no-console */
+/* eslint-disable react/prop-types */
 import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
@@ -7,17 +8,13 @@ import GlobalNav from '../../../adapters/GlobalNav/GlobalNavAdapter';
 import Group from './GroupAdapter';
 import Module from './ModuleAdapter';
 
-const Context = props => {
-  const { children, ...rest } = props;
-
-  return (
-    <GlobalNav>
-      <GlobalNav.SideNav>
-        <Group>{props.children}</Group>
-      </GlobalNav.SideNav>
-    </GlobalNav>
-  );
-};
+const Context = props => (
+  <GlobalNav>
+    <GlobalNav.SideNav>
+      <Group>{props.children}</Group>
+    </GlobalNav.SideNav>
+  </GlobalNav>
+);
 
 function higContext() {
   const higContainer = document.createElement('div');
@@ -61,7 +58,7 @@ describe('<Group>', () => {
 
       const reactContainer = document.createElement('div');
 
-      const wrapper = mount(
+      mount(
         <Context>
           <Module {...module1Defaults} />
           <Module {...module2Defaults} />

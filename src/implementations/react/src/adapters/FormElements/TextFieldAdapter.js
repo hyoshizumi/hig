@@ -15,9 +15,9 @@
 
  */
 import * as HIG from 'hig-vanilla';
+import * as PropTypes from 'prop-types';
 
 import HIGElement from '../../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 import createComponent from '../createComponent';
 
 class TextFieldAdapter extends HIGElement {
@@ -26,24 +26,24 @@ class TextFieldAdapter extends HIGElement {
   }
 
   componentDidMount() {
-    var commitProps = [];
+    const commitProps = [];
     if (this.initialProps.disabled) {
-      commitProps.push('disabled',this.initialProps.disabled);
+      commitProps.push('disabled', this.initialProps.disabled);
     }
     if (this.initialProps.required) {
-      commitProps.push('required',this.initialProps.required);
+      commitProps.push('required', this.initialProps.required);
     }
     if (this.initialProps.onBlur) {
-      commitProps.push('onBlur',this.initialProps.onBlur);
+      commitProps.push('onBlur', this.initialProps.onBlur);
     }
     if (this.initialProps.onChange) {
-      commitProps.push('onChange',this.initialProps.onChange);
+      commitProps.push('onChange', this.initialProps.onChange);
     }
     if (this.initialProps.onFocus) {
-      commitProps.push('onFocus',this.initialProps.onFocus);
+      commitProps.push('onFocus', this.initialProps.onFocus);
     }
     if (this.initialProps.onInput) {
-      commitProps.push('onInput',this.initialProps.onInput);
+      commitProps.push('onInput', this.initialProps.onInput);
     }
     this.commitUpdate(commitProps);
   }
@@ -52,7 +52,7 @@ class TextFieldAdapter extends HIGElement {
     this.commitUpdate(['value', props.value]);
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -145,9 +145,7 @@ class TextFieldAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(
-            `${this.constructor.name} doesn't handle the prop ${propKey}`
-          );
+          // No-op
         }
       }
     }

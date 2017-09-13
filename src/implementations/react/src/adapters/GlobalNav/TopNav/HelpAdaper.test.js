@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types, no-console */
 /**
 Copyright 2016 Autodesk,Inc.
 
@@ -22,15 +23,13 @@ import GlobalNavAdapter from '../GlobalNavAdapter';
 import TopNavAdapter from './TopNavAdapter';
 import HelpAdapter from './HelpAdapter';
 
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <TopNavAdapter>
-        <HelpAdapter title={props.title} link={props.link} />
-      </TopNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const Context = props => (
+  <GlobalNavAdapter>
+    <TopNavAdapter>
+      <HelpAdapter title={props.title} link={props.link} />
+    </TopNavAdapter>
+  </GlobalNavAdapter>
+);
 
 function setupReactContext(props) {
   const reactContainer = document.createElement('div');
@@ -59,8 +58,8 @@ function createHigContext(props) {
 describe('Help', () => {
   it('renders help ', () => {
     const props = {};
-    const { reactWrapper, reactContainer } = setupReactContext(props);
-    const { higContainer, higItem } = createHigContext(props);
+    const { reactContainer } = setupReactContext(props);
+    const { higContainer } = createHigContext(props);
 
     expect(reactContainer.firstChild.outerHTML).toMatchSnapshot();
     expect(reactContainer.firstElementChild.outerHTML).toEqual(

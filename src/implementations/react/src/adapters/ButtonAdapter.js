@@ -1,8 +1,7 @@
-
+import * as PropTypes from 'prop-types';
 import * as HIG from 'hig-vanilla';
 
 import HIGElement from '../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 import createComponent from './createComponent';
 
 export class ButtonAdapter extends HIGElement {
@@ -32,7 +31,7 @@ export class ButtonAdapter extends HIGElement {
     }
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -57,7 +56,7 @@ export class ButtonAdapter extends HIGElement {
             dispose();
           }
 
-          if(!propValue) {
+          if (!propValue) {
             return;
           }
 
@@ -74,7 +73,7 @@ export class ButtonAdapter extends HIGElement {
             dispose();
           }
 
-          if(!propValue) {
+          if (!propValue) {
             return;
           }
 
@@ -91,7 +90,7 @@ export class ButtonAdapter extends HIGElement {
             dispose();
           }
 
-          if(!propValue) {
+          if (!propValue) {
             return;
           }
 
@@ -108,7 +107,7 @@ export class ButtonAdapter extends HIGElement {
             dispose();
           }
 
-          if(!propValue) {
+          if (!propValue) {
             return;
           }
 
@@ -139,7 +138,7 @@ export class ButtonAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }

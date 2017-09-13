@@ -23,6 +23,21 @@ import RangeAdapter from './RangeAdapter';
 const inputId = '1234';
 
 describe('<RangeAdapter>', () => {
+  function mockDataset(higContainer) {
+    higContainer.querySelector('.hig__range__field__range-values').dataset = {
+      rangeMin: 0,
+      rangeMax: 0
+    };
+  }
+
+  function setLabelForInputId(higContainer) {
+    // to adjust for the randomly generated id
+    const label = higContainer.querySelector('label');
+    const input = higContainer.querySelector('input');
+    label.setAttribute('for', inputId);
+    input.setAttribute('id', inputId);
+  }
+
   function createHigRange(defaults = {}) {
     const higContainer = document.createElement('div');
 
@@ -40,27 +55,12 @@ describe('<RangeAdapter>', () => {
     return <RangeAdapter {...props} />;
   }
 
-  function mockDataset(higContainer) {
-    higContainer.querySelector('.hig__range__field__range-values').dataset = {
-      rangeMin: 0,
-      rangeMax: 0
-    };
-  }
-
-  function setLabelForInputId(higContainer) {
-    // to adjust for the randomly generated id
-    const label = higContainer.querySelector('label');
-    const input = higContainer.querySelector('input');
-    label.setAttribute('for', inputId);
-    input.setAttribute('id', inputId);
-  }
-
   it('renders a range', () => {
     const defaults = { name: 'mySpecialField', label: 'foo' };
 
-    const { higRange, higContainer } = createHigRange(defaults);
+    const { higContainer } = createHigRange(defaults);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionRange(defaults), {
+    mount(createOrionRange(defaults), {
       attachTo: container
     });
     setLabelForInputId(container);
@@ -81,9 +81,9 @@ describe('<RangeAdapter>', () => {
       value: 10
     };
 
-    const { higRange, higContainer } = createHigRange(defaults);
+    const { higContainer } = createHigRange(defaults);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionRange(defaults), {
+    mount(createOrionRange(defaults), {
       attachTo: container
     });
     setLabelForInputId(container);
@@ -135,7 +135,7 @@ describe('<RangeAdapter>', () => {
     );
   });
 
-  ['onBlur', 'onFocus', 'onChange'].forEach(eventName => {
+  ['onBlur', 'onFocus', 'onChange'].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
       const spy = jest.fn();
       const container = document.createElement('div');
@@ -145,7 +145,7 @@ describe('<RangeAdapter>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });
@@ -161,7 +161,7 @@ describe('<RangeAdapter>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });

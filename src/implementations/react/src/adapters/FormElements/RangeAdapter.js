@@ -15,9 +15,9 @@
 
  */
 import * as HIG from 'hig-vanilla';
+import * as PropTypes from 'prop-types';
 
 import HIGElement from '../../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 import createComponent from '../createComponent';
 
 class RangeAdapter extends HIGElement {
@@ -26,29 +26,29 @@ class RangeAdapter extends HIGElement {
   }
 
   componentDidMount() {
-    var commitProps = [];
+    const commitProps = [];
     if (this.initialProps.disabled) {
       commitProps.push('disabled', this.initialProps.disabled);
     }
     if (this.initialProps.required) {
-      commitProps.push('required', this.initialProps.required)
+      commitProps.push('required', this.initialProps.required);
     }
     if (this.initialProps.checked) {
-      commitProps.push('checked', this.initialProps.checked)
+      commitProps.push('checked', this.initialProps.checked);
     }
     if (this.initialProps.onBlur) {
-      commitProps.push('onBlur', this.initialProps.onBlur)
+      commitProps.push('onBlur', this.initialProps.onBlur);
     }
     if (this.initialProps.onChange) {
-      commitProps.push('onChange', this.initialProps.onChange)
+      commitProps.push('onChange', this.initialProps.onChange);
     }
     if (this.initialProps.onFocus) {
-      commitProps.push('onFocus', this.initialProps.onFocus)
+      commitProps.push('onFocus', this.initialProps.onFocus);
     }
     this.commitUpdate(commitProps);
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -117,7 +117,7 @@ class RangeAdapter extends HIGElement {
           break;
         }
         default: {
-          console.log(`RangeAdapter property ${propKey} is unknown`);
+          // No-op
         }
       }
     }
@@ -127,42 +127,52 @@ class RangeAdapter extends HIGElement {
 const RangeComponent = createComponent(RangeAdapter);
 
 RangeComponent.propTypes = {
-  disabled:     PropTypes.bool,
+  disabled: PropTypes.bool,
   instructions: PropTypes.string,
-  label:        PropTypes.string,
-  minValue:     PropTypes.number,
-  maxValue:     PropTypes.number,
-  onBlur:       PropTypes.func,
-  onChange:     PropTypes.func,
-  onFocus:      PropTypes.func,
-  required:     PropTypes.string,
-  step:         PropTypes.number,
-  value:        PropTypes.number
+  label: PropTypes.string,
+  minValue: PropTypes.number,
+  maxValue: PropTypes.number,
+  onBlur: PropTypes.func,
+  onChange: PropTypes.func,
+  onFocus: PropTypes.func,
+  required: PropTypes.string,
+  step: PropTypes.number,
+  value: PropTypes.number
 };
 
 RangeComponent.__docgenInfo = {
   props: {
-    disabled:        {
+    disabled: {
       description: 'prevents interaction with the range'
-    }, instructions: {
+    },
+    instructions: {
       description: 'instruction text for the range'
-    }, label:        {
+    },
+    label: {
       description: 'label for the range'
-    }, minValue:     {
+    },
+    minValue: {
       description: 'minimum value for the range'
-    }, maxValue:     {
+    },
+    maxValue: {
       description: 'maximum value for the range'
-    }, onBlur:       {
+    },
+    onBlur: {
       description: 'callback for focus lost from the range'
-    }, onChange:     {
+    },
+    onChange: {
       description: 'callback for change + focus lost for the range'
-    }, onFocus:      {
+    },
+    onFocus: {
       description: 'callback for focus event on the range'
-    }, required:     {
+    },
+    required: {
       description: 'text indicating that this range field is a required field'
-    }, step:         {
+    },
+    step: {
       description: 'value of each step between min and max.'
-    }, value:        {
+    },
+    value: {
       description: 'value for the range input'
     }
   }

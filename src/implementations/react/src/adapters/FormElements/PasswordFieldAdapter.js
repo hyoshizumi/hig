@@ -15,9 +15,9 @@
 
  */
 import * as HIG from 'hig-vanilla';
+import * as PropTypes from 'prop-types';
 
 import HIGElement from '../../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 import createComponent from '../createComponent';
 
 class PasswordFieldAdapter extends HIGElement {
@@ -26,26 +26,26 @@ class PasswordFieldAdapter extends HIGElement {
   }
 
   componentDidMount() {
-    var commitProps = [];
+    const commitProps = [];
     if (this.initialProps.disabled) {
-      commitProps.push('disabled',this.initialProps.disabled);
+      commitProps.push('disabled', this.initialProps.disabled);
     }
     if (this.initialProps.required) {
-      commitProps.push('required',this.initialProps.required)
+      commitProps.push('required', this.initialProps.required);
     }
     if (this.initialProps.revealPassword) {
-      commitProps.push('revealPassword',this.initialProps.revealPassword)
+      commitProps.push('revealPassword', this.initialProps.revealPassword);
     }
     if (this.initialProps.showPasswordHideButton) {
-      commitProps.push('showPasswordHideButton',this.initialProps.showPasswordHideButton)
+      commitProps.push('showPasswordHideButton', this.initialProps.showPasswordHideButton);
     }
     if (this.initialProps.showPasswordRevealButton) {
-      commitProps.push('showPasswordRevealButton',this.initialProps.showPasswordRevealButton)
+      commitProps.push('showPasswordRevealButton', this.initialProps.showPasswordRevealButton);
     }
     this.commitUpdate(commitProps);
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -176,9 +176,7 @@ class PasswordFieldAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(
-            `${this.constructor.name} doesn't handle the prop ${propKey}`
-          );
+          // No-op
         }
       }
     }

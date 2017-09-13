@@ -14,12 +14,12 @@ See the License for the specific language governing permissions and
 limitations under the License.
 
  */
-import HIGElement from '../../../elements/HIGElement';
 import * as PropTypes from 'prop-types';
+import HIGElement from '../../../elements/HIGElement';
 import createComponent from '../../createComponent';
 
 export class HelpAdapter extends HIGElement {
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];

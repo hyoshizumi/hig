@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PlaygroundSection from '../PlaygroundSection';
 import { PasswordField } from '../../hig-react';
@@ -8,7 +9,7 @@ class PasswordFieldSection extends Component {
     this.state = {};
   }
 
-  setPasswordFieldValue = (event) => {    
+  setPasswordFieldValue = (event) => {
     this.setState({ textFieldValue: event.target.textFieldValue });
   }
 
@@ -33,15 +34,15 @@ class PasswordFieldSection extends Component {
           onChange={this.logEvent}
           onFocus={this.logEvent}
           onInput={this.logEvent}
-          onPasswordHideButtonClick={function() {"clicked Password hide button"}}
-          onPasswordRevealButtonClick={function(){console.log('Password REVEAL clicked')}}
+          onPasswordHideButtonClick={() => { 'clicked Password hide button'; }}
+          onPasswordRevealButtonClick={() => { console.log('Password REVEAL clicked'); }}
           showPasswordRevealButton={false}
           showPasswordHideButton={false}
           placeholder="Enter the dragon, I mean password"
           required="Hint: It's not 'password', 'monkey', or '123456'"
         />
       </PlaygroundSection>
-    )
+    );
   }
 }
 export default PasswordFieldSection;

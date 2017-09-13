@@ -15,9 +15,9 @@
 
  */
 import * as HIG from 'hig-vanilla';
+import * as PropTypes from 'prop-types';
 
 import HIGElement from '../../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 import createComponent from '../createComponent';
 
 export class RadioButtonAdapter extends HIGElement {
@@ -26,30 +26,29 @@ export class RadioButtonAdapter extends HIGElement {
   }
 
   componentDidMount() {
-    var commitProps = [];
+    const commitProps = [];
     if (this.initialProps.disabled) {
-      commitProps.push('disabled',this.initialProps.disabled);
+      commitProps.push('disabled', this.initialProps.disabled);
     }
     if (this.initialProps.required) {
-      commitProps.push('required',this.initialProps.required)
+      commitProps.push('required', this.initialProps.required);
     }
     if (this.initialProps.checked) {
-      commitProps.push('checked',this.initialProps.checked)
+      commitProps.push('checked', this.initialProps.checked);
     }
     if (this.initialProps.onChange) {
-      commitProps.push('onChange',this.initialProps.onChange)
+      commitProps.push('onChange', this.initialProps.onChange);
     }
     if (this.initialProps.onFocus) {
-      commitProps.push('onFocus',this.initialProps.onFocus)
+      commitProps.push('onFocus', this.initialProps.onFocus);
     }
     if (this.initialProps.onHover) {
-      commitProps.push('onHover',this.initialProps.onHover)
+      commitProps.push('onHover', this.initialProps.onHover);
     }
     this.commitUpdate(commitProps);
-
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -109,7 +108,7 @@ export class RadioButtonAdapter extends HIGElement {
           break;
         }
         default:
-          console.warn('Unknown key, not handled: ', propKey);
+          // No-op
       }
     }
   }
@@ -144,7 +143,8 @@ RadioButtonAdapterComponent.__docgenInfo = {
       description: 'boolean - sets whether the radio button is disabled'
     },
     required: {
-      description: 'string - sets the whether the radio button is required and displays the provided message'
+      description:
+        'string - sets the whether the radio button is required and displays the provided message'
     },
     label: {
       description: 'sets the label text for the radio button'

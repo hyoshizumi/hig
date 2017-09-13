@@ -30,7 +30,7 @@ const HIGChildValidator = validChildren =>
     const prop = props[propName];
 
     let error = null;
-    React.Children.forEach(prop, child => {
+    React.Children.forEach(prop, (child) => {
       // Guard against null children
       if (child === null) {
         return;

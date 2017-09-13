@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
@@ -40,8 +41,8 @@ describe('<SideNav>', () => {
   }
 
   it('renders without defaults', () => {
-    const { higComponent, higContainer } = createHigComponent({});
-    const { orionWrapper, orionContainer } = createOrionComponent({});
+    const { higContainer } = createHigComponent({});
+    const { orionContainer } = createOrionComponent({});
 
     expect(orionContainer.firstChild.outerHTML).toMatchSnapshot();
 
@@ -52,14 +53,14 @@ describe('<SideNav>', () => {
 
   it('renders when configured with defaults', () => {
     const defaults = {
-      copyright: "Copyright @ 2017",
-      headerLabel: "My lovely project",
-      headerLink: "http://my-project-url.com",
-      superHeaderLabel: "My lovely account",
-      superHeaderLink: "http://my-account-url.com"
+      copyright: 'Copyright @ 2017',
+      headerLabel: 'My lovely project',
+      headerLink: 'http://my-project-url.com',
+      superHeaderLabel: 'My lovely account',
+      superHeaderLink: 'http://my-account-url.com'
     };
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionWrapper, orionContainer } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstChild.outerHTML).toMatchSnapshot();
 
@@ -70,19 +71,19 @@ describe('<SideNav>', () => {
 
   it('renders when configured with updated props', () => {
     const defaults = {
-      copyright: "Copyright @ 2017",
-      headerLabel: "My lovely project",
-      headerLink: "http://my-project-url.com",
-      superHeaderLabel: "My lovely account",
-      superHeaderLink: "http://my-account-url.com"
+      copyright: 'Copyright @ 2017',
+      headerLabel: 'My lovely project',
+      headerLink: 'http://my-project-url.com',
+      superHeaderLabel: 'My lovely account',
+      superHeaderLink: 'http://my-account-url.com'
     };
     const nextProps = {
-      copyright: "Copyright @ 2018",
-      headerLabel: "My updated project",
-      headerLink: "http://my-updated-project-url.com",
-      superHeaderLabel: "My updated account",
-      superHeaderLink: "http://my-updated-account-url.com"
-    }
+      copyright: 'Copyright @ 2018',
+      headerLabel: 'My updated project',
+      headerLink: 'http://my-updated-project-url.com',
+      superHeaderLabel: 'My updated account',
+      superHeaderLink: 'http://my-updated-account-url.com'
+    };
     const { higComponent, higContainer } = createHigComponent(defaults);
     const { orionWrapper, orionContainer } = createOrionComponent(defaults);
 
@@ -101,25 +102,23 @@ describe('<SideNav>', () => {
   });
 
   describe('with search', () => {
-    const Context = props => {
-      return (
-        <GlobalNav>
-          <SideNav>
-            <Group>
-              <Module title={props.moduleTitle} icon="assets">
-                <Submodule title={props.submoduleTitle1} icon="assets" />
-                <Submodule title={props.submoduleTitle2} icon="assets" />
-              </Module>
-            </Group>
-            <Search query={props.query} />
-          </SideNav>
-        </GlobalNav>
-      );
-    };
+    const SearchContext = props => (
+      <GlobalNav>
+        <SideNav>
+          <Group>
+            <Module title={props.moduleTitle} icon="assets">
+              <Submodule title={props.submoduleTitle1} icon="assets" />
+              <Submodule title={props.submoduleTitle2} icon="assets" />
+            </Module>
+          </Group>
+          <Search query={props.query} />
+        </SideNav>
+      </GlobalNav>
+    );
 
     function setupReactContext(props) {
       const reactContainer = document.createElement('div');
-      mount(<Context {...props} />, { attachTo: reactContainer });
+      mount(<SearchContext {...props} />, { attachTo: reactContainer });
       return { reactContainer };
     }
 
@@ -138,28 +137,26 @@ describe('<SideNav>', () => {
   });
 
   describe('with slot content', () => {
-    const Context = props => {
-      return (
-        <GlobalNav>
-          <SideNav>
-            <Group>
-              <Module title={props.moduleTitle} icon="assets">
-                <Submodule title={props.submoduleTitle1} icon="assets" />
-                <Submodule title={props.submoduleTitle2} icon="assets" />
-              </Module>
-            </Group>
-            <Slot>
-              <h1>Hello, world!</h1>
-            </Slot>
-            <Search query={props.query} />
-          </SideNav>
-        </GlobalNav>
-      );
-    };
+    const SlotContext = props => (
+      <GlobalNav>
+        <SideNav>
+          <Group>
+            <Module title={props.moduleTitle} icon="assets">
+              <Submodule title={props.submoduleTitle1} icon="assets" />
+              <Submodule title={props.submoduleTitle2} icon="assets" />
+            </Module>
+          </Group>
+          <Slot>
+            <h1>Hello, world!</h1>
+          </Slot>
+          <Search query={props.query} />
+        </SideNav>
+      </GlobalNav>
+    );
 
     function setupReactContext(props) {
       const reactContainer = document.createElement('div');
-      mount(<Context {...props} />, { attachTo: reactContainer });
+      mount(<SlotContext {...props} />, { attachTo: reactContainer });
       return { reactContainer };
     }
 

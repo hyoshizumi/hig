@@ -1,7 +1,7 @@
+import * as PropTypes from 'prop-types';
 
 import createComponent from '../../createComponent';
 import HIGElement from '../../../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 
 export class TabAdapter extends HIGElement {
   componentDidMount() {
@@ -14,7 +14,7 @@ export class TabAdapter extends HIGElement {
       this.hig.setLabel(this.initialProps.label);
     }
   }
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];

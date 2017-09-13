@@ -15,6 +15,6 @@ function RangeSection() {
         step={1}
       />
     </PlaygroundSection>
-  )
+  );
 }
 export default RangeSection;

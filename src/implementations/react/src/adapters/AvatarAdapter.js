@@ -1,7 +1,7 @@
+import * as PropTypes from 'prop-types';
 import * as HIG from 'hig-vanilla';
 
 import HIGElement from '../elements/HIGElement';
-import * as PropTypes from 'prop-types';
 import createComponent from './createComponent';
 
 export class AvatarAdapter extends HIGElement {
@@ -9,13 +9,12 @@ export class AvatarAdapter extends HIGElement {
     super(HIG.Avatar, initialProps);
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
 
       switch (propKey) {
-        
         case 'name': {
           this.hig.setName(propValue);
           break;
@@ -29,7 +28,7 @@ export class AvatarAdapter extends HIGElement {
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }
@@ -50,7 +49,8 @@ AvatarComponent.__docgenInfo = {
       description: 'sets the name and initials of an avatar'
     },
     size: {
-      description: 'sets the size of an avatar, either small, medium, large or extralarge, defaults to large'
+      description: `sets the size of an avatar, 
+                    either small, medium, large or extralarge, defaults to large`
     },
     image: {
       description: 'url to image of an avatar'

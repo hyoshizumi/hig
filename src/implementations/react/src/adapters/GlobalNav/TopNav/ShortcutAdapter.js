@@ -14,12 +14,12 @@ limitations under the License.
 
  */
 
-import HIGElement from '../../../elements/HIGElement';
 import * as PropTypes from 'prop-types';
+import HIGElement from '../../../elements/HIGElement';
 import createComponent from '../../createComponent';
 
 export class ShortcutAdapter extends HIGElement {
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     const mapping = {
       title: 'setTitle',
       link: 'setLink',

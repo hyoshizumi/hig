@@ -1,7 +1,7 @@
+import * as PropTypes from 'prop-types';
 
-import HIGElement from "../../elements/HIGElement";
-import * as PropTypes from "prop-types";
-import createComponent from "../createComponent";
+import HIGElement from '../../elements/HIGElement';
+import createComponent from '../createComponent';
 
 export class OptionAdapter extends HIGElement {
   constructor(HIGConstructor, initialProps) {
@@ -12,31 +12,31 @@ export class OptionAdapter extends HIGElement {
 
   componentDidMount() {
     if (this.props.selected) {
-      this.commitUpdate(['selected', this.props.selected])
-    } 
+      this.commitUpdate(['selected', this.props.selected]);
+    }
     if (this.props.onHover) {
-      this.commitUpdate(['onHover', this.props.onHover])
+      this.commitUpdate(['onHover', this.props.onHover]);
     }
     if (this.props.onClick) {
-      this.commitUpdate(['onClick', this.props.onClick])
+      this.commitUpdate(['onClick', this.props.onClick]);
     }
   }
 
-  commitUpdate(updatePayload, oldProps, newProp) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
 
       switch (propKey) {
-        case "label": {
+        case 'label': {
           this.hig.setLabel(propValue);
           break;
         }
-        case "value": {
+        case 'value': {
           this.hig.setValue(propValue);
           break;
         }
-        case "selected": {
+        case 'selected': {
           if (propValue) {
             this.hig.select();
           } else {
@@ -44,34 +44,34 @@ export class OptionAdapter extends HIGElement {
           }
           break;
         }
-        case "onHover": {
-          const dispose = this._disposeFunctions.get("onHover");
+        case 'onHover': {
+          const dispose = this._disposeFunctions.get('onHover');
 
           if (dispose) {
             dispose();
           }
 
           this._disposeFunctions.set(
-            "onHoverDispose",
+            'onHoverDispose',
             this.hig.onHover(propValue)
           );
           break;
         }
-        case "onClick": {
-          const dispose = this._disposeFunctions.get("onClick");
+        case 'onClick': {
+          const dispose = this._disposeFunctions.get('onClick');
 
           if (dispose) {
             dispose();
           }
 
           this._disposeFunctions.set(
-            "onClickDispose",
+            'onClickDispose',
             this.hig.onClick(propValue)
           );
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }
@@ -91,24 +91,24 @@ OptionComponent.propTypes = {
 OptionComponent.__docgenInfo = {
   props: {
     label: {
-      description: "sets {String} the label for Option"
+      description: 'sets {String} the label for Option'
     },
     value: {
-      description: "sets {String} the value for the Option"
+      description: 'sets {String} the value for the Option'
     },
     selected: {
-      description: "{bool} to tell if option has been selected"
+      description: '{bool} to tell if option has been selected'
     },
     deactivate: {
-      description: "{func} deactivates the Account"
+      description: '{func} deactivates the Account'
     },
     onClick: {
       description:
-        "{func} calls the provided callback when user clicks on the Option"
+        '{func} calls the provided callback when user clicks on the Option'
     },
     onHover: {
       description:
-        "{func} calls the provided callback when user hovers over the Option"
+        '{func} calls the provided callback when user hovers over the Option'
     }
   }
 };

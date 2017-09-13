@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import PlaygroundSection from '../PlaygroundSection';
 import { IconButton } from '../../hig-react';
@@ -24,7 +25,7 @@ function IconButtonSection() {
       />
 
       <IconButton
-        disabled={true}
+        disabled
         title="Icon button"
         link="#"
         icon="gear"

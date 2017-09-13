@@ -7,18 +7,13 @@ import GlobalNavAdapter from '../../GlobalNav/GlobalNavAdapter';
 import TopNavAdapter from './TopNavAdapter';
 import ProjectAccountSwitcher from './ProjectAccountSwitcherAdapter';
 
-const Project = ProjectAccountSwitcher.Project;
-const Account = ProjectAccountSwitcher.Account;
-
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <TopNavAdapter>
-        <ProjectAccountSwitcher {...props} activeType={'account'} />
-      </TopNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const Context = props => (
+  <GlobalNavAdapter>
+    <TopNavAdapter>
+      <ProjectAccountSwitcher {...props} activeType={'account'} />
+    </TopNavAdapter>
+  </GlobalNavAdapter>
+);
 
 function createHigContext(props) {
   const higContainer = document.createElement('div');
@@ -50,10 +45,10 @@ function setupProjectAccountSwitcher(props) {
 describe('<ProjectAccountSwitcher>', () => {
   it('renders a projectAccountSwitcher', () => {
     const defaults = {};
-    const { reactWrapper, reactContainer } = setupProjectAccountSwitcher(
+    const { reactContainer } = setupProjectAccountSwitcher(
       defaults
     );
-    const { higContainer, higItem } = createHigContext(defaults);
+    const { higContainer } = createHigContext(defaults);
     expect(reactContainer.firstChild.outerHTML).toMatchSnapshot();
     expect(reactContainer.firstElementChild.outerHTML).toEqual(
       higContainer.firstElementChild.outerHTML
@@ -90,7 +85,7 @@ describe('<ProjectAccountSwitcher>', () => {
 
   it('warns when passed an unsupported property', () => {
     const warnSpy = jest.fn();
-    const { reactWrapper, reactContainer } = setupProjectAccountSwitcher({});
+    const { reactWrapper } = setupProjectAccountSwitcher({});
     console.warn = warnSpy;
 
     reactWrapper.setProps({ realProp: false });
@@ -98,10 +93,10 @@ describe('<ProjectAccountSwitcher>', () => {
     expect(warnSpy).toHaveBeenCalled();
   });
 
-  ['onClick', 'onClickOutside'].forEach(eventName => {
+  ['onClick', 'onClickOutside'].forEach((eventName) => {
     it(`handles ${eventName}`, () => {
       const warnSpy = jest.fn();
-      const { reactWrapper, reactContainer } = setupProjectAccountSwitcher({});
+      const { reactWrapper } = setupProjectAccountSwitcher({});
       console.warn = warnSpy;
 
       reactWrapper.setProps({ [eventName]: () => {} });
@@ -113,7 +108,7 @@ describe('<ProjectAccountSwitcher>', () => {
   describe('open and close Project Account Switcher flyout', () => {
     it('sets the flyout as open if initialized as open', () => {
       const reactContainer = document.createElement('div');
-      const wrapper = mount(<Context {...{ open: true }} />, {
+      mount(<Context {...{ open: true }} />, {
         attachTo: reactContainer
       });
       const flyoutEl = reactContainer.getElementsByClassName(
@@ -131,7 +126,7 @@ describe('<ProjectAccountSwitcher>', () => {
       const wrapper = mount(<Context {...props} />, {
         attachTo: reactContainer
       });
-      var elem = reactContainer.getElementsByClassName('hig__flyout--open');
+      let elem = reactContainer.getElementsByClassName('hig__flyout--open');
       expect(elem.length).toEqual(0);
 
       wrapper.setProps({ open: true });
@@ -164,7 +159,7 @@ describe('<ProjectAccountSwitcher>', () => {
         ]
       };
       const reactContainer = document.createElement('div');
-      const wrapper = mount(<Context {...props} />, {
+      mount(<Context {...props} />, {
         attachTo: reactContainer
       });
       const elem = reactContainer.getElementsByClassName(

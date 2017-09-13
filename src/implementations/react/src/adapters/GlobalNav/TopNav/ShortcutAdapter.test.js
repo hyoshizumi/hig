@@ -1,21 +1,18 @@
-
+/* eslint-disable react/prop-types, no-console */
 import { mount } from 'enzyme';
-import * as HIG from 'hig-vanilla';
 import React from 'react';
 
 import GlobalNavAdapter from '../GlobalNavAdapter';
 import TopNavAdapter from './TopNavAdapter';
 import ShortcutAdapter from './ShortcutAdapter';
 
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <TopNavAdapter>
-        <ShortcutAdapter title={props.title} link={props.link} icon={props.icon} />
-      </TopNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const Context = props => (
+  <GlobalNavAdapter>
+    <TopNavAdapter>
+      <ShortcutAdapter title={props.title} link={props.link} icon={props.icon} />
+    </TopNavAdapter>
+  </GlobalNavAdapter>
+);
 
 function setupReactContext() {
   const props = { title: 'GEARS', link: '/settings', icon: 'gear' };
@@ -30,7 +27,7 @@ describe('Shortcut', () => {
       const { reactContainer } = setupReactContext();
       expect(reactContainer.firstChild.outerHTML).toMatchSnapshot();
 
-      var elems = reactContainer.getElementsByClassName(
+      const elems = reactContainer.getElementsByClassName(
         'hig__global-nav__top-nav__shortcut'
       );
       expect(elems.length).toEqual(1);

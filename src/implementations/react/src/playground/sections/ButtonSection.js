@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import PlaygroundSection from '../PlaygroundSection';
 import { Button } from '../../hig-react';
@@ -42,7 +43,7 @@ function ButtonSection() {
       <Button
         size="small"
         title="Disabled Button"
-        disabled={true}
+        disabled
         onClick={() => {
           console.log('Large Button on click');
         }}

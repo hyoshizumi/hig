@@ -25,10 +25,10 @@ describe('<AvatarAdapter>', () => {
   it('renders avatar without image', () => {
     const defaults = { name: 'Regular Avatar' };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -43,11 +43,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Small Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -62,11 +62,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Medium Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -81,11 +81,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Large Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -100,11 +100,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Extralarge Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -119,11 +119,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Extralarge Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -139,11 +139,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Abott Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -159,11 +159,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Abott Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -179,11 +179,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Abott Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -199,11 +199,11 @@ describe('<AvatarAdapter>', () => {
       name: 'Abott Avatar'
     };
 
-    const { higAvatar, higContainer } = createHigAvatar(defaults);
+    const { higContainer } = createHigAvatar(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Avatar {...defaults} />, { attachTo: container });
+    mount(<Avatar {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -211,5 +211,4 @@ describe('<AvatarAdapter>', () => {
       higContainer.firstElementChild.outerHTML
     );
   });
-  
 });

@@ -17,9 +17,8 @@
 import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 
-import { default as Checkbox } from './CheckboxAdapter';
+import Checkbox from './CheckboxAdapter';
 
 const inputId = '1234';
 
@@ -58,8 +57,8 @@ describe('<Checkbox>', () => {
 
   it('renders a Checkbox', () => {
     const defaults = {};
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -74,8 +73,8 @@ describe('<Checkbox>', () => {
       name: 'checkbox-name',
       value: 'checkbox-value'
     };
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -113,9 +112,9 @@ describe('<Checkbox>', () => {
     );
   });
 
-  ['onChange', 'onFocus', 'onHover'].forEach(eventName => {
+  ['onChange', 'onFocus', 'onHover'].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
-      const { orionContainer, orionWrapper } = createOrionComponent({
+      const { orionWrapper } = createOrionComponent({
         [eventName]: () => {}
       });
       const instance = orionWrapper.instance().instance;
@@ -127,7 +126,7 @@ describe('<Checkbox>', () => {
     });
 
     it(`sets event listeners for ${eventName} when updated`, () => {
-      const { orionContainer, orionWrapper } = createOrionComponent({
+      const { orionWrapper } = createOrionComponent({
         [eventName]: () => {}
       });
       orionWrapper.setProps({ [eventName]: () => {} });

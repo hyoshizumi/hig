@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React, { Component } from 'react';
 import PlaygroundSection from '../PlaygroundSection';
 import { TextField } from '../../hig-react';
@@ -36,7 +37,7 @@ class TextFieldSection extends Component {
           required="This field is required."
         />
       </PlaygroundSection>
-    )
+    );
   }
 }
 export default TextFieldSection;

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import PlaygroundSection from '../PlaygroundSection';
 import { TextArea } from '../../hig-react';
@@ -26,6 +27,6 @@ function TextAreaSection() {
         name="say-my-name"
       />
     </PlaygroundSection>
-  )
+  );
 }
 export default TextAreaSection;

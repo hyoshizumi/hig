@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import React from 'react';
 import PlaygroundSection from '../PlaygroundSection';
 import { RadioButton } from '../../hig-react';
@@ -39,13 +40,13 @@ function RadioButtonSection() {
           label="Disabled"
           name="tsandcs"
           value="hhh"
-          disabled={true}
+          disabled
         />
         <RadioButton
           label="Checked"
           name="tsandcs"
           value="werr"
-          checked={true}
+          checked
         />
         {' '}
         <hr />

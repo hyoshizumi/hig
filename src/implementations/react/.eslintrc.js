@@ -7,6 +7,13 @@ module.exports = {
       'webpack': true
     }
   },
+  globals: {
+    'describe': true,
+    'document': true,
+    'expect': true,
+    'it': true,
+    'jest': true
+  },
   plugins: [
     "react"
   ],
@@ -14,8 +21,10 @@ module.exports = {
     'class-methods-use-this': 0,
     'max-len': [2, { code: 100 }],
     'no-underscore-dangle': 0,
-    'import/no-extraneous-dependencies': 1,
+    'import/no-extraneous-dependencies': ["error", {"devDependencies": ["**/*.test.js", "src/stories/**/*"]}],
     'react/jsx-filename-extension': 0,
     "jsx-a11y/href-no-hash": "off",
+    'import/no-named-as-default': 0,
+    'no-unused-expressions': ["error", { allowTernary: true }]
   }
 };

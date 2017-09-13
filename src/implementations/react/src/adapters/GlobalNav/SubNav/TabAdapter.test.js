@@ -1,4 +1,4 @@
-
+/* eslint-disable react/prop-types, no-console */
 import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
@@ -6,17 +6,15 @@ import React from 'react';
 import GlobalNav from '../../../adapters/GlobalNav/GlobalNavAdapter';
 import Tabs from './TabsAdapter';
 
-const Context = props => {
-  return (
-    <GlobalNav>
-      <GlobalNav.SubNav>
-        <Tabs>
-          <Tabs.Tab active={props.active} label={props.label} key={props.id} />
-        </Tabs>
-      </GlobalNav.SubNav>
-    </GlobalNav>
-  );
-};
+const Context = props => (
+  <GlobalNav>
+    <GlobalNav.SubNav>
+      <Tabs>
+        <Tabs.Tab active={props.active} label={props.label} key={props.id} />
+      </Tabs>
+    </GlobalNav.SubNav>
+  </GlobalNav>
+);
 
 function createHigContext(props) {
   const higContainer = document.createElement('div');
@@ -47,8 +45,8 @@ function createReactComponent(props) {
 describe('<Tab>', () => {
   it('will render defualt tabs', () => {
     const defaults = {};
-    const { wrapper, reactContainer } = createReactComponent(defaults);
-    const { higContainer, higItem } = createHigContext(defaults);
+    const { reactContainer } = createReactComponent(defaults);
+    const { higContainer } = createHigContext(defaults);
 
     expect(reactContainer.firstChild.outerHTML).toMatchSnapshot();
     expect(reactContainer.firstElementChild.outerHTML).toEqual(
@@ -72,10 +70,10 @@ describe('<Tab>', () => {
     );
   });
 
-  ['onClick'].forEach(eventName => {
+  ['onClick'].forEach((eventName) => {
     it(`handles ${eventName}`, () => {
       const warnSpy = jest.fn();
-      const { wrapper, reactContainer } = createReactComponent({});
+      const { wrapper } = createReactComponent({});
       console.warn = warnSpy;
 
       wrapper.setProps({ [eventName]: () => {} });

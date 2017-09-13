@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
  Copyright 2016 Autodesk,Inc.
 
@@ -17,7 +18,6 @@
 import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 
 import GlobalNav from '../GlobalNavAdapter';
 import SideNav from './SideNavAdapter';
@@ -26,7 +26,7 @@ import Module from './ModuleAdapter';
 import ModuleCollapseAdapter from './ModuleCollapseAdapter';
 
 describe('<ModuleCollapseAdapter>', () => {
-  function createHigComponent(defaults = {}) {
+  function createHigComponent() {
     const higContainer = document.createElement('div');
     const globalNav = new HIG.GlobalNav();
     const sideNav = new globalNav.partials.SideNav();
@@ -68,8 +68,8 @@ describe('<ModuleCollapseAdapter>', () => {
 
   it('renders', () => {
     const defaults = {};
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -98,7 +98,7 @@ describe('<ModuleCollapseAdapter>', () => {
 
   it('warns when passed an unsupported property', () => {
     const warnSpy = jest.fn();
-    const { orionContainer, orionWrapper } = createOrionComponent({});
+    const { orionWrapper } = createOrionComponent({});
     console.warn = warnSpy;
 
     orionWrapper.setProps({ realProp: false });
@@ -106,10 +106,10 @@ describe('<ModuleCollapseAdapter>', () => {
     expect(warnSpy).toHaveBeenCalled();
   });
 
-  ['onClick'].forEach(eventName => {
+  ['onClick'].forEach((eventName) => {
     it(`handles ${eventName}`, () => {
       const warnSpy = jest.fn();
-      const { orionContainer, orionWrapper } = createOrionComponent({});
+      const { orionWrapper } = createOrionComponent({});
       console.warn = warnSpy;
 
       orionWrapper.setProps({ [eventName]: () => {} });

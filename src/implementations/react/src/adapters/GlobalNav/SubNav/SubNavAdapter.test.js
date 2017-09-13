@@ -1,5 +1,5 @@
+/* eslint-disable react/prop-types */
 import { mount } from 'enzyme';
-import * as HIG from 'hig-vanilla';
 import React from 'react';
 
 import GlobalNavAdapter from '../GlobalNavAdapter';
@@ -7,18 +7,16 @@ import SubNavAdapter from './SubNavAdapter';
 import TabsAdapter from './TabsAdapter';
 import TabAdapter from './TabAdapter';
 
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <SubNavAdapter
-        moduleIndicatorName={props.moduleIndicatorName}
-        moduleIndicatorIcon={props.moduleIndicatorIcon}
-      >
-        {props.Tabs}
-      </SubNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const Context = props => (
+  <GlobalNavAdapter>
+    <SubNavAdapter
+      moduleIndicatorName={props.moduleIndicatorName}
+      moduleIndicatorIcon={props.moduleIndicatorIcon}
+    >
+      {props.Tabs}
+    </SubNavAdapter>
+  </GlobalNavAdapter>
+);
 
 describe('<SubNav>', () => {
   it('renders with props', () => {
@@ -28,7 +26,7 @@ describe('<SubNav>', () => {
       Tabs: null
     };
     const reactContainer = document.createElement('div');
-    const wrapper = mount(<Context {...defaultProps} />, {
+    mount(<Context {...defaultProps} />, {
       attachTo: reactContainer
     });
 

@@ -1,17 +1,17 @@
-import * as HIG from "hig-vanilla";
-import * as PropTypes from "prop-types";
+import * as HIG from 'hig-vanilla';
+import * as PropTypes from 'prop-types';
 
-import HIGElement from "../../elements/HIGElement";
-import HIGChildValidator from "../../elements/HIGChildValidator";
-import createComponent from "../createComponent";
+import HIGElement from '../../elements/HIGElement';
+import HIGChildValidator from '../../elements/HIGChildValidator';
+import createComponent from '../createComponent';
 
 import SideNavAdapterComponent, {
   SideNavAdapter
-} from "./SideNav/SideNavAdapter";
-import TopNavAdapterComponent, { TopNavAdapter } from "./TopNav/TopNavAdapter";
-import SubNavAdapterComponent, { SubNavAdapter } from "./SubNav/SubNavAdapter";
-import Slot from "../SlotAdapter";
-import SideNav from "../../elements/components/GlobalNav/SideNav";
+} from './SideNav/SideNavAdapter';
+import TopNavAdapterComponent, { TopNavAdapter } from './TopNav/TopNavAdapter';
+import SubNavAdapterComponent, { SubNavAdapter } from './SubNav/SubNavAdapter';
+import Slot from '../SlotAdapter';
+import SideNav from '../../elements/components/GlobalNav/SideNav';
 
 class GlobalNavAdapter extends HIGElement {
   constructor(initialProps) {
@@ -59,10 +59,10 @@ class GlobalNavAdapter extends HIGElement {
     }
   }
 
-  appendChild(instance, beforeChild = {}) {
+  appendChild(instance) {
     if (instance instanceof SideNavAdapter) {
       if (this.sideNav) {
-        throw new Error("only one SideNav is allowed");
+        throw new Error('only one SideNav is allowed');
       } else {
         this.sideNav = instance;
         if (this.mounted) {
@@ -72,7 +72,7 @@ class GlobalNavAdapter extends HIGElement {
       }
     } else if (instance instanceof TopNavAdapter) {
       if (this.topNav) {
-        throw new Error("only one TopNav is allowed");
+        throw new Error('only one TopNav is allowed');
       } else {
         this.topNav = instance;
         if (this.mounted) {
@@ -82,7 +82,7 @@ class GlobalNavAdapter extends HIGElement {
       }
     } else if (instance instanceof SubNavAdapter) {
       if (this.subNav) {
-        throw new Error("only one SubNav is allowed");
+        throw new Error('only one SubNav is allowed');
       } else {
         this.subNav = instance;
         if (this.mounted) {
@@ -91,7 +91,7 @@ class GlobalNavAdapter extends HIGElement {
         }
       }
     } else {
-      throw new Error("unknown type");
+      throw new Error('unknown type');
     }
   }
 
@@ -118,17 +118,17 @@ class GlobalNavAdapter extends HIGElement {
     instance.unmount();
   }
 
-  commitUpdate(updatePayload, oldProps, newProp) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
 
       switch (propKey) {
-        case "sideNavOpen": {
+        case 'sideNavOpen': {
           propValue ? this.hig.showSideNav() : this.hig.hideSideNav();
           break;
         }
-        case "children": {
+        case 'children': {
           // No-op
           break;
         }
@@ -156,11 +156,11 @@ GlobalNavAdapterComponent.propTypes = {
 GlobalNavAdapterComponent.__docgenInfo = {
   props: {
     sideNavOpen: {
-      description: "show or hide the SideNav"
+      description: 'show or hide the SideNav'
     },
 
     children: {
-      description: "support adding SideNav, SubNav, or TopNav"
+      description: 'support adding SideNav, SubNav, or TopNav'
     }
   }
 };

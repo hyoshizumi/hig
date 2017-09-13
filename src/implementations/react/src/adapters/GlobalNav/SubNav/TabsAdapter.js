@@ -1,9 +1,9 @@
-import createComponent from "../../createComponent";
-import HIGElement from "../../../elements/HIGElement";
-import HIGNodeList from "../../../elements/HIGNodeList";
-import HIGChildValidator from "../../../elements/HIGChildValidator";
+import createComponent from '../../createComponent';
+import HIGElement from '../../../elements/HIGElement';
+import HIGNodeList from '../../../elements/HIGNodeList';
+import HIGChildValidator from '../../../elements/HIGChildValidator';
 
-import TabAdapterComponent, { TabAdapter } from "./TabAdapter";
+import TabAdapterComponent, { TabAdapter } from './TabAdapter';
 
 export class TabsAdapter extends HIGElement {
   constructor(HigConstructor, initialProps) {
@@ -47,7 +47,7 @@ TabsAdapterComponent.propTypes = {
 TabsAdapterComponent.__docgenInfo = {
   props: {
     children: {
-      description: "support adding Tab components"
+      description: 'support adding Tab components'
     }
   }
 };

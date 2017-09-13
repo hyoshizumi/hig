@@ -25,10 +25,10 @@ describe('<ButtonAdapter>', () => {
   it('renders the standard button', () => {
     const defaults = { title: 'regular button', link: 'http://example.com' };
 
-    const { higButton, higContainer } = createHigButton(defaults);
+    const { higContainer } = createHigButton(defaults);
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -45,11 +45,11 @@ describe('<ButtonAdapter>', () => {
       link: 'http://example.com'
     };
 
-    const { higButton, higContainer } = createHigButton(defaults);
+    const { higContainer } = createHigButton(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -66,11 +66,11 @@ describe('<ButtonAdapter>', () => {
       link: 'http://example.com'
     };
 
-    const { higButton, higContainer } = createHigButton(defaults);
+    const { higContainer } = createHigButton(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -87,11 +87,11 @@ describe('<ButtonAdapter>', () => {
       link: 'http://example.com'
     };
 
-    const { higButton, higContainer } = createHigButton(defaults);
+    const { higContainer } = createHigButton(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -108,11 +108,11 @@ describe('<ButtonAdapter>', () => {
       link: 'http://example.com'
     };
 
-    const { higButton, higContainer } = createHigButton(defaults);
+    const { higContainer } = createHigButton(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -129,11 +129,11 @@ describe('<ButtonAdapter>', () => {
       link: 'http://example.com'
     };
 
-    const { higButton, higContainer } = createHigButton(defaults);
+    const { higContainer } = createHigButton(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -145,11 +145,11 @@ describe('<ButtonAdapter>', () => {
   it('renders the button with an icon', () => {
     const defaults = { icon: 'gear' };
 
-    const { higButton, higContainer } = createHigButton(defaults);
+    const { higContainer } = createHigButton(defaults);
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -275,7 +275,7 @@ describe('<ButtonAdapter>', () => {
 
     const container = document.createElement('div');
 
-    const wrapper = mount(<Button {...defaults} />, { attachTo: container });
+    mount(<Button {...defaults} />, { attachTo: container });
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -284,7 +284,7 @@ describe('<ButtonAdapter>', () => {
     );
   });
 
-  ['onClick', 'onHover', 'onFocus', 'onBlur'].forEach(eventName => {
+  ['onClick', 'onHover', 'onFocus', 'onBlur'].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
       const spy = jest.fn();
       const container = document.createElement('div');
@@ -294,7 +294,7 @@ describe('<ButtonAdapter>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });
@@ -310,7 +310,7 @@ describe('<ButtonAdapter>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });

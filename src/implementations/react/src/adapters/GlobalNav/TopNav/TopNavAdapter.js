@@ -1,5 +1,3 @@
-
-//import * as HIG from 'hig-vanilla';
 import * as PropTypes from 'prop-types';
 
 import HIGElement from '../../../elements/HIGElement';
@@ -10,7 +8,8 @@ import HIGNodeList from '../../../elements/HIGNodeList';
 import ProjectAccountSwitcherComponent, {
   ProjectAccountSwitcherAdapter
 } from './ProjectAccountSwitcherAdapter';
-import ProjectAccountSwitcher from '../../../elements/components/GlobalNav/TopNav/ProjectAccountSwitcher';
+import ProjectAccountSwitcher
+  from '../../../elements/components/GlobalNav/TopNav/ProjectAccountSwitcher';
 import ProfileComponent, {
   ProfileAdapter
 } from './ProfileAdapter';
@@ -60,7 +59,7 @@ export class TopNavAdapter extends HIGElement {
     }
   }
 
-  commitUpdate(updatePayload, oldProps, newProp) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -79,20 +78,20 @@ export class TopNavAdapter extends HIGElement {
           break;
         }
         case 'onLogoClick': {
-          const dispose = this._disposeFunctions.get("onLogoClickDispose");
+          const dispose = this._disposeFunctions.get('onLogoClickDispose');
 
           if (dispose) {
             dispose();
           }
 
           this._disposeFunctions.set(
-            "onLogoClickDispose",
+            'onLogoClickDispose',
             this.hig.onLogoClick(propValue)
           );
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }
@@ -118,7 +117,7 @@ export class TopNavAdapter extends HIGElement {
     }
   }
 
-  appendChild(instance, beforeChild = {}) {
+  appendChild(instance) {
     this.requireSingleInstance(instance);
     this.checkValidChild(instance);
 
@@ -190,7 +189,7 @@ export class TopNavAdapter extends HIGElement {
   }
 
   getFunctionNameFor(instance) {
-    return 'add' + instance.constructor.name;
+    return `add${instance.constructor.name}`;
   }
 
   onHamburgerClick(callback) {

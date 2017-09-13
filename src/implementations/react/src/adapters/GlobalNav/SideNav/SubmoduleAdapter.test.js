@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /*
  Copyright 2016 Autodesk,Inc.
 
@@ -17,15 +18,13 @@
 import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
-import TestUtils from 'react-dom/test-utils';
 
 import GlobalNav from '../GlobalNavAdapter';
 import SideNav from './SideNavAdapter';
 import Group from './GroupAdapter';
 import Module from './ModuleAdapter';
-import Submodule from './SubmoduleAdapter';
 
-import { default as SubmoduleAdapter } from './SubmoduleAdapter';
+import SubmoduleAdapter from './SubmoduleAdapter';
 
 describe('<SubmoduleAdapter>', () => {
   function createHigComponent(defaults = {}) {
@@ -71,8 +70,8 @@ describe('<SubmoduleAdapter>', () => {
 
   it('renders', () => {
     const defaults = {};
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -86,8 +85,8 @@ describe('<SubmoduleAdapter>', () => {
       title: 'A title',
       link: 'https://a-website.com'
     };
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -121,7 +120,7 @@ describe('<SubmoduleAdapter>', () => {
 
   it('warns when passed an unsupported property', () => {
     const warnSpy = jest.fn();
-    const { orionContainer, orionWrapper } = createOrionComponent({});
+    const { orionWrapper } = createOrionComponent({});
     console.warn = warnSpy;
 
     orionWrapper.setProps({ realProp: false });
@@ -129,10 +128,10 @@ describe('<SubmoduleAdapter>', () => {
     expect(warnSpy).toHaveBeenCalled();
   });
 
-  ['onClick', 'onHover'].forEach(eventName => {
+  ['onClick', 'onHover'].forEach((eventName) => {
     it(`handles ${eventName}`, () => {
       const warnSpy = jest.fn();
-      const { orionContainer, orionWrapper } = createOrionComponent({});
+      const { orionWrapper } = createOrionComponent({});
       console.warn = warnSpy;
 
       orionWrapper.setProps({ [eventName]: () => {} });

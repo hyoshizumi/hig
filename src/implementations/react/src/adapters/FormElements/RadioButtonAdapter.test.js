@@ -18,7 +18,7 @@ import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
 
-import { default as RadioButton } from './RadioButtonAdapter';
+import RadioButton from './RadioButtonAdapter';
 
 const inputId = '1234';
 
@@ -57,8 +57,8 @@ describe('<RadioButton>', () => {
 
   it('renders', () => {
     const defaults = {};
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -73,8 +73,8 @@ describe('<RadioButton>', () => {
       name: 'some-ame',
       value: 'some-value'
     };
-    const { higComponent, higContainer } = createHigComponent(defaults);
-    const { orionContainer, orionWrapper } = createOrionComponent(defaults);
+    const { higContainer } = createHigComponent(defaults);
+    const { orionContainer } = createOrionComponent(defaults);
 
     expect(orionContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -112,9 +112,9 @@ describe('<RadioButton>', () => {
     );
   });
 
-  ['onChange', 'onFocus', 'onHover'].forEach(eventName => {
+  ['onChange', 'onFocus', 'onHover'].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
-      const { orionContainer, orionWrapper } = createOrionComponent({
+      const { orionWrapper } = createOrionComponent({
         [eventName]: () => {}
       });
       const instance = orionWrapper.instance().instance;
@@ -126,7 +126,7 @@ describe('<RadioButton>', () => {
     });
 
     it(`sets event listeners for ${eventName} when updated`, () => {
-      const { orionContainer, orionWrapper } = createOrionComponent({
+      const { orionWrapper } = createOrionComponent({
         [eventName]: () => {}
       });
       orionWrapper.setProps({ [eventName]: () => {} });

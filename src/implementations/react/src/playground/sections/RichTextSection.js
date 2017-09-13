@@ -12,9 +12,9 @@ function RichTextSection() {
   <h3>H3: example text</h3>
   `;
 
-  return ( <PlaygroundSection title="RichText">
+  return (<PlaygroundSection title="RichText">
     <Slot>
-      <RichText dangerouslySetInnerHTML={{__html: html}} />
+      <RichText dangerouslySetInnerHTML={{ __html: html }} />
       <RichText>
         <h4>H4, Sub1: example text</h4>
         <h5>H5, Sub2: example text</h5>
@@ -22,7 +22,7 @@ function RichTextSection() {
         <p><b>B, Bold: Bold example text</b></p>
       </RichText>
     </Slot>
-  </PlaygroundSection>)
-};
+  </PlaygroundSection>);
+}
 
 export default RichTextSection;

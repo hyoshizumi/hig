@@ -39,7 +39,7 @@ class ModalSection extends Component {
           <p><i>This is my HTML content.</i></p>
         </Modal>
       </PlaygroundSection>
-    )
+    );
   }
 }
 export default ModalSection;

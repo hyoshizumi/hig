@@ -21,10 +21,10 @@ describe('<GlobalNavAdapter>', () => {
   }
 
   it('renders the global nav', () => {
-    const { higNav, higContainer } = createHigNav();
+    const { higContainer } = createHigNav();
 
     const reactContainer = document.createElement('div');
-    const wrapper = mount(<GlobalNavAdapter />, { attachTo: reactContainer });
+    mount(<GlobalNavAdapter />, { attachTo: reactContainer });
 
     expect(reactContainer.firstChild.outerHTML).toMatchSnapshot();
 
@@ -74,7 +74,7 @@ describe('<GlobalNavAdapter>', () => {
     it('can showSideNav by default', () => {
       const { higNav, higContainer } = createHigNav();
       const reactContainer = document.createElement('div');
-      const wrapper = mount(<GlobalNavAdapter sideNavOpen={true} />, {
+      mount(<GlobalNavAdapter sideNavOpen />, {
         attachTo: reactContainer
       });
 
@@ -94,7 +94,7 @@ describe('<GlobalNavAdapter>', () => {
       higNav.addSideNav(sideNav);
 
       const reactContainer = document.createElement('div');
-      const wrapper = mount(
+      mount(
         <GlobalNavAdapter>
           <GlobalNavAdapter.SideNav />
         </GlobalNavAdapter>,
@@ -123,10 +123,10 @@ describe('<GlobalNavAdapter>', () => {
   });
 
   it('can render the Container as a child', () => {
-    const { higNav, higContainer } = createHigNav();
+    const { higContainer } = createHigNav();
 
     const reactContainer = document.createElement('div');
-    const wrapper = mount(<GlobalNavAdapter />, { attachTo: reactContainer });
+    mount(<GlobalNavAdapter />, { attachTo: reactContainer });
 
     expect(reactContainer.firstChild.outerHTML).toMatchSnapshot();
 

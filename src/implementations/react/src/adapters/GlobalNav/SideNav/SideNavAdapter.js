@@ -1,13 +1,13 @@
-import * as PropTypes from "prop-types";
+import * as PropTypes from 'prop-types';
 
-import HIGElement from "../../../elements/HIGElement";
-import HIGNodeList from "../../../elements/HIGNodeList";
-import HIGChildValidator from "../../../elements/HIGChildValidator";
-import createComponent from "../../createComponent";
+import HIGElement from '../../../elements/HIGElement';
+import HIGNodeList from '../../../elements/HIGNodeList';
+import HIGChildValidator from '../../../elements/HIGChildValidator';
+import createComponent from '../../createComponent';
 
-import GroupComponent, { GroupAdapter } from "./GroupAdapter";
-import LinkComponent, { LinkAdapter } from "./LinkAdapter";
-import SearchComponent, { SearchAdapter } from "./SearchAdapter";
+import GroupComponent, { GroupAdapter } from './GroupAdapter';
+import LinkComponent, { LinkAdapter } from './LinkAdapter';
+import SearchComponent, { SearchAdapter } from './SearchAdapter';
 import Search from '../../../elements/components/GlobalNav/SideNav/Search';
 import Slot from '../../SlotAdapter';
 
@@ -46,27 +46,27 @@ export class SideNavAdapter extends HIGElement {
     }
 
     if (this.props.headerLabel) {
-      this.commitUpdate(["headerLabel", this.props.headerLabel]);
+      this.commitUpdate(['headerLabel', this.props.headerLabel]);
     }
 
     if (this.props.headerLink) {
-      this.commitUpdate(["headerLink", this.props.headerLink]);
+      this.commitUpdate(['headerLink', this.props.headerLink]);
     }
 
     if (this.props.superHeaderLabel) {
-      this.commitUpdate(["superHeaderLabel", this.props.superHeaderLabel]);
+      this.commitUpdate(['superHeaderLabel', this.props.superHeaderLabel]);
     }
 
     if (this.props.superHeaderLink) {
-      this.commitUpdate(["superHeaderLink", this.props.superHeaderLink]);
+      this.commitUpdate(['superHeaderLink', this.props.superHeaderLink]);
     }
 
     if (this.props.onHeaderClick) {
-      this.commitUpdate(["onHeaderClick", this.props.onHeaderClick]);
+      this.commitUpdate(['onHeaderClick', this.props.onHeaderClick]);
     }
 
     if (this.props.onSuperHeaderClick) {
-      this.commitUpdate(["onSuperHeaderClick", this.props.onSuperHeaderClick]);
+      this.commitUpdate(['onSuperHeaderClick', this.props.onSuperHeaderClick]);
     }
 
     if (this.slot) {
@@ -74,48 +74,48 @@ export class SideNavAdapter extends HIGElement {
     }
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
 
       switch (propKey) {
-        case "copyright": {
+        case 'copyright': {
           this.hig.setCopyright(propValue);
           break;
         }
-        case "headerLabel": {
+        case 'headerLabel': {
           this.hig.setHeaderLabel(propValue);
           break;
         }
-        case "headerLink": {
+        case 'headerLink': {
           this.hig.setHeaderLink(propValue);
           break;
         }
-        case "superHeaderLabel": {
+        case 'superHeaderLabel': {
           this.hig.setSuperHeaderLabel(propValue);
           break;
         }
-        case "superHeaderLink": {
+        case 'superHeaderLink': {
           this.hig.setSuperHeaderLink(propValue);
           break;
         }
-        case "onHeaderClick": {
-          const dispose = this._disposeFunctions.get("onHeaderClickDispose");
+        case 'onHeaderClick': {
+          const dispose = this._disposeFunctions.get('onHeaderClickDispose');
 
           if (dispose) {
             dispose();
           }
 
           this._disposeFunctions.set(
-            "onHeaderClickDispose",
+            'onHeaderClickDispose',
             this.hig.onHeaderClick(propValue)
           );
           break;
         }
-        case "onSuperHeaderClick": {
+        case 'onSuperHeaderClick': {
           const dispose = this._disposeFunctions.get(
-            "onSuperHeaderClickDispose"
+            'onSuperHeaderClickDispose'
           );
 
           if (dispose) {
@@ -123,17 +123,17 @@ export class SideNavAdapter extends HIGElement {
           }
 
           this._disposeFunctions.set(
-            "onSuperHeaderClickDispose",
+            'onSuperHeaderClickDispose',
             this.hig.onSuperHeaderClick(propValue)
           );
           break;
         }
-        case "children": {
+        case 'children': {
           // No-op
           break;
         }
         default: {
-          console.warn(`${propKey} is unknown`);
+          // No-op
         }
       }
     }
@@ -163,7 +163,7 @@ export class SideNavAdapter extends HIGElement {
       this.links.insertBefore(instance, insertBeforeIndex);
     } else if (instance instanceof SearchAdapter) {
       if (this.search) {
-        throw new Error("only one Search is allowed");
+        throw new Error('only one Search is allowed');
       } else {
         this.search = instance;
 
@@ -172,7 +172,7 @@ export class SideNavAdapter extends HIGElement {
         }
       }
     } else {
-      throw new Error("unknown type");
+      throw new Error('unknown type');
     }
   }
 
@@ -217,10 +217,10 @@ SideNavComponent.propTypes = {
 SideNavComponent.__docgenInfo = {
   props: {
     children: {
-      description: "supports adding Group, Link, anand Search components"
+      description: 'supports adding Group, Link, anand Search components'
     },
     copyright: {
-      descroption: "copyright notice at bottom of the side nav"
+      descroption: 'copyright notice at bottom of the side nav'
     }
   }
 };

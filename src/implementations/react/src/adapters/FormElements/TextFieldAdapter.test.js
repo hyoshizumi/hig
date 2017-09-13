@@ -38,9 +38,9 @@ describe('<TextField>', () => {
   it('renders a text field', () => {
     const defaults = { name: 'mySpecialField' };
 
-    const { higTextField, higContainer } = createHigTextField(defaults);
+    const { higContainer } = createHigTextField(defaults);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionTextField(defaults), {
+    mount(createOrionTextField(defaults), {
       attachTo: container
     });
 
@@ -65,7 +65,7 @@ describe('<TextField>', () => {
     const { higTextField, higContainer } = createHigTextField(defaults);
     higTextField.required(defaults.required);
     const container = document.createElement('div');
-    const wrapper = mount(createOrionTextField(defaults), {
+    mount(createOrionTextField(defaults), {
       attachTo: container
     });
 
@@ -114,7 +114,7 @@ describe('<TextField>', () => {
     );
   });
 
-  ['onBlur', 'onChange', 'onFocus', 'onInput'].forEach(eventName => {
+  ['onBlur', 'onChange', 'onFocus', 'onInput'].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
       const spy = jest.fn();
       const container = document.createElement('div');
@@ -124,7 +124,7 @@ describe('<TextField>', () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + 'Dispose'
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /**
  Copyright 2016 Autodesk,Inc.
 
@@ -15,18 +16,31 @@
 
  */
 
-import { mount } from "enzyme";
-import * as HIG from "hig-vanilla";
-import React from "react";
+import { mount } from 'enzyme';
+import * as HIG from 'hig-vanilla';
+import React from 'react';
 
-import DropdownComponent from "./DropdownAdapter";
+import DropdownComponent from './DropdownAdapter';
+
 const OptionComponent = DropdownComponent.Option;
 
-const inputId = "text-field-5678";
+const inputId = 'text-field-5678';
 
-describe("<DropdownAdapter>", () => {
+describe('<DropdownAdapter>', () => {
+  function setLabelForInputId(higContainer) {
+    // to adjust for the randomly generated id
+    const labels = higContainer.querySelectorAll('label');
+
+    [].forEach.call(labels, (label) => {
+      label.setAttribute('for', inputId);
+    });
+
+    const input = higContainer.querySelector('input');
+    input.setAttribute('id', inputId);
+  }
+
   function createHigContext(props) {
-    const higContainer = document.createElement("div");
+    const higContainer = document.createElement('div');
 
     const higDropdown = new HIG.Dropdown(props);
     higDropdown.mount(higContainer);
@@ -40,38 +54,24 @@ describe("<DropdownAdapter>", () => {
 
     setLabelForInputId(higContainer);
 
-    return { higContainer, higDropdown: higDropdown, higOption: higOption };
+    return { higContainer, higDropdown, higOption };
   }
 
-  function setLabelForInputId(higContainer) {
-    // to adjust for the randomly generated id
-    const labels = higContainer.querySelectorAll("label");
+  const Context = props => (
+    <DropdownComponent
+      label={props.label}
+      placeholder={props.placeholder}
+      instructions={props.instructions}
+    >
+      <OptionComponent
+        label={props.option.label}
+        value={props.option.value}
+      />
+    </DropdownComponent>
+  );
 
-    [].forEach.call(labels, function(label) {
-      label.setAttribute("for", inputId);
-    });
-
-    const input = higContainer.querySelector("input");
-    input.setAttribute("id", inputId);
-  }
-
-  const Context = props => {
-    return (
-      <DropdownComponent
-        label={props.label}
-        placeholder={props.placeholder}
-        instructions={props.instructions}
-      >
-        <OptionComponent
-          label={props.option.label}
-          value={props.option.value}
-        />
-      </DropdownComponent>
-    );
-  };
-
-  const UpdatedContext = props => {
-    const {option, ...dropdownProps } = props;
+  const UpdatedContext = (props) => {
+    const { option, ...dropdownProps } = props;
     return (
       <DropdownComponent {...dropdownProps}>
         <OptionComponent {...option} />
@@ -79,27 +79,25 @@ describe("<DropdownAdapter>", () => {
     );
   };
 
-  const EventListenerContext = props => {
-    return (
-      <DropdownComponent {...props}>
-        <OptionComponent {...props} />
-      </DropdownComponent>
-    );
-  };
+  const EventListenerContext = props => (
+    <DropdownComponent {...props}>
+      <OptionComponent {...props} />
+    </DropdownComponent>
+  );
 
-  it("renders a dropdown with initial props", () => {
+  it('renders a dropdown with initial props', () => {
     const defaults = {
-      label: "dropdown label",
-      placeholder: "dropdown placeholder",
-      instructions: "instructions for dropdown",
+      label: 'dropdown label',
+      placeholder: 'dropdown placeholder',
+      instructions: 'instructions for dropdown',
       option: {
-        label: "option label",
-        value: "option value"
+        label: 'option label',
+        value: 'option value'
       }
     };
-    const { higContainer, higDropdown, higOption } = createHigContext(defaults);
-    const container = document.createElement("div");
-    const wrapper = mount(Context(defaults), {
+    const { higContainer } = createHigContext(defaults);
+    const container = document.createElement('div');
+    mount(Context(defaults), {
       attachTo: container
     });
 
@@ -111,19 +109,19 @@ describe("<DropdownAdapter>", () => {
     );
   });
 
-  it("renders a dropdown with updated props", () => {
+  it('renders a dropdown with updated props', () => {
     const defaults = {
-      label: "dropdown label",
-      placeholder: "dropdown placeholder",
-      instructions: "instructions for dropdown",
+      label: 'dropdown label',
+      placeholder: 'dropdown placeholder',
+      instructions: 'instructions for dropdown',
       option: {
-        label: "option-label",
-        value: "option-value"
+        label: 'option-label',
+        value: 'option-value'
       }
     };
 
     const { higContainer, higDropdown, higOption } = createHigContext(defaults);
-    const container = document.createElement("div");
+    const container = document.createElement('div');
     const wrapper = mount(<UpdatedContext {...defaults} />, {
       attachTo: container
     });
@@ -131,14 +129,14 @@ describe("<DropdownAdapter>", () => {
     setLabelForInputId(container);
 
     const option = {
-      label: "updated option label",
-      value: "updated option value"
+      label: 'updated option label',
+      value: 'updated option value'
     };
 
     const nextProps = {
-      label: "updated dropdown label",
-      placeholder: "updated dropdown placeholder",
-      instructions: "updated instructions for dropdown",
+      label: 'updated dropdown label',
+      placeholder: 'updated dropdown placeholder',
+      instructions: 'updated instructions for dropdown',
       selectedOptionLabel: option.label,
       option: {
         label: option.label,
@@ -155,7 +153,6 @@ describe("<DropdownAdapter>", () => {
     higOption.setValue(nextProps.option.value);
     higOption.select();
 
-    const prevProps = wrapper.props;
     wrapper.setProps(nextProps);
 
     expect(container.firstElementChild.outerHTML).toMatchSnapshot();
@@ -164,18 +161,18 @@ describe("<DropdownAdapter>", () => {
     );
   });
 
-  it("renders a disabled", () => {
+  it('renders a disabled', () => {
     const defaults = {
-      label: "dropdown label",
-      placeholder: "dropdown placeholder",
-      instructions: "instructions for dropdown",
+      label: 'dropdown label',
+      placeholder: 'dropdown placeholder',
+      instructions: 'instructions for dropdown',
       disabled: true,
-      option: { label: "option-label", value: "option-value" }
+      option: { label: 'option-label', value: 'option-value' }
     };
 
-    const { higContainer, higDropdown, higOption } = createHigContext(defaults);
-    const container = document.createElement("div");
-    const wrapper = mount(<UpdatedContext {...defaults} />, {
+    const { higContainer, higDropdown } = createHigContext(defaults);
+    const container = document.createElement('div');
+    mount(<UpdatedContext {...defaults} />, {
       attachTo: container
     });
 
@@ -189,15 +186,15 @@ describe("<DropdownAdapter>", () => {
   });
 
   [
-    "onBlur",
-    "onTargetClick",
-    "onClickOutside",
-    "onKeypress",
-    "onFocus"
-  ].forEach(eventName => {
+    'onBlur',
+    'onTargetClick',
+    'onClickOutside',
+    'onKeypress',
+    'onFocus'
+  ].forEach((eventName) => {
     it(`sets event listeners for ${eventName} initially`, () => {
       const spy = jest.fn();
-      const container = document.createElement("div");
+      const container = document.createElement('div');
       const wrapper = mount(EventListenerContext({ [eventName]: spy }), {
         attachTo: container
       });
@@ -206,14 +203,14 @@ describe("<DropdownAdapter>", () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + "Dispose"
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });
 
     it(`sets event listeners for ${eventName} when updated`, () => {
       const spy = jest.fn();
-      const container = document.createElement("div");
+      const container = document.createElement('div');
       const wrapper = mount(EventListenerContext({}), {
         attachTo: container
       });
@@ -224,7 +221,7 @@ describe("<DropdownAdapter>", () => {
       const instance = wrapper.instance().instance;
 
       const disposeFunction = instance._disposeFunctions.get(
-        eventName + "Dispose"
+        `${eventName}Dispose`
       );
       expect(disposeFunction).toBeDefined();
     });

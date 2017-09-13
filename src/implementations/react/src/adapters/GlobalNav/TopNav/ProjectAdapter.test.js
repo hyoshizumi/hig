@@ -8,25 +8,15 @@ import TopNavAdapter from './TopNavAdapter';
 import ProjectAccountSwitcherAdapter from './ProjectAccountSwitcherAdapter';
 import ProjectAdapter from './ProjectAdapter';
 
-const onItemClick = function() {
-  return 'onItemClick';
-};
-
-const onClickOutside = function() {
-  return 'onClickOutside';
-};
-
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <TopNavAdapter>
-        <ProjectAccountSwitcherAdapter>
-          <ProjectAdapter {...props} />
-        </ProjectAccountSwitcherAdapter>
-      </TopNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const Context = props => (
+  <GlobalNavAdapter>
+    <TopNavAdapter>
+      <ProjectAccountSwitcherAdapter>
+        <ProjectAdapter {...props} />
+      </ProjectAccountSwitcherAdapter>
+    </TopNavAdapter>
+  </GlobalNavAdapter>
+);
 
 function createOrionProject(props) {
   const reactContainer = document.createElement('div');
@@ -61,8 +51,8 @@ function createHigContext(props) {
 describe('<Project>', () => {
   it('renders an Project', () => {
     const defaults = {};
-    const { higContainer, higItem } = createHigContext(defaults);
-    const { reactContainer, reactWrapper } = createOrionProject(defaults);
+    const { higContainer } = createHigContext(defaults);
+    const { reactContainer } = createOrionProject(defaults);
 
     expect(reactContainer.firstElementChild.outerHTML).toMatchSnapshot();
 
@@ -100,7 +90,7 @@ describe('<Project>', () => {
 
   it('warns when passed an unsupported property', () => {
     const warnSpy = jest.fn();
-    const { reactWrapper, reactContainer } = createOrionProject({});
+    const { reactWrapper } = createOrionProject({});
     console.warn = warnSpy;
 
     reactWrapper.setProps({ realProp: false });
@@ -108,10 +98,10 @@ describe('<Project>', () => {
     expect(warnSpy).toHaveBeenCalled();
   });
 
-  ['onClick'].forEach(eventName => {
+  ['onClick'].forEach((eventName) => {
     it(`handles ${eventName}`, () => {
       const warnSpy = jest.fn();
-      const { reactWrapper, reactContainer } = createOrionProject({});
+      const { reactWrapper } = createOrionProject({});
       console.warn = warnSpy;
 
       reactWrapper.setProps({ [eventName]: () => {} });

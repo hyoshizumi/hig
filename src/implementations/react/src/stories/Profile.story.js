@@ -1,3 +1,4 @@
+/* eslint-disable no-alert, no-undef */
 /**
  Copyright 2016 Autodesk,Inc.
 
@@ -31,11 +32,11 @@ function ParagraphSlot() {
   return (
     <Slot>
       <p>
-        Next level deep v roof party, jianbing pok pok pug butcher vape farm-to-table kombucha. Yr snackwave VHS, wolf
-        poutine actually woke poke flexitarian paleo food truck DIY kale chips viral yuccie. Cornhole tattooed vaporware
-        affogato, gentrify mlkshk portland organic. Swag try-hard cronut hashtag, etsy bespoke chia banjo messenger bag.
-        Mustache umami godard man braid cronut yuccie. YOLO vaporware franzen, gochujang typewriter mixtape brunch salvia
-        paleo lyft. Four dollar toast tumblr mustache thundercats single-origin coffee, freegan flexitarian cold-pressed
+        Next level deep v roof party, jianbing pok pok pug butcher vape farm-to-table.
+        poutine actually woke poke flexitarian paleo food truck DIY kale chips viral.
+        affogato, gentrify mlkshk portland organic. Swag try-hard cronut hashtag,
+        Mustache umami godard man braid cronut yuccie. YOLO vaporware franzen,
+        paleo lyft. Four dollar toast tumblr mustache thundercats single-origin coffee,
         beard roof party VHS venmo af ugh bushwick.
       </p>
     </Slot>
@@ -45,10 +46,9 @@ function ParagraphSlot() {
 storiesOf('TopNav Profile', module)
   .addWithInfo(
     'default',
-    <div>
+    (<div>
       Basic usage of <pre>GlobalNav.TopNav.Profile</pre>
-
-    </div>,
+    </div>),
     () => (
       <GlobalNav>
         <TopNav logo={logo}>
@@ -66,9 +66,9 @@ storiesOf('TopNav Profile', module)
   )
   .addWithInfo(
     'different initialSettings (no knobs)',
-    <div>
+    (<div>
       TopNav Search has different initial settings (knobs trigger a commitUpdate)
-    </div>,
+    </div>),
     () => (
       <GlobalNav>
         <TopNav logo={logo}>
@@ -76,10 +76,10 @@ storiesOf('TopNav Profile', module)
             image={profileImage}
             email="jane.designer@example.com"
             name="Jane Designer"
-            open={true}
+            open
             signOutLabel="Sign off"
             signOutLink="http://www.autodesk.com"
-            onProfileSettingsClick={function() {
+            onProfileSettingsClick={() => {
               alert('profile settings clicked');
             }}
           />
@@ -88,26 +88,24 @@ storiesOf('TopNav Profile', module)
       </GlobalNav>
     )
   )
-  .addWithInfo('user configured', `Set open state, events, `, () => {
-    return (
-      <GlobalNav>
-        <TopNav logo={logo}>
-          <Profile
-            image={text('image', profileImage)}
-            name={text('name', 'Jane Designer')}
-            email={text('email', 'jane.designer@example.com')}
-            open={boolean('profileFlyoutOpen', false)}
-            onProfileClickOutside={action('Clicked outside profile')}
-            onProfileImageClick={action('profile image clicked')}
-            onProfileSettingsClick={action('profile settings clicked')}
-            profileSettingsLabel={text('profileSettingsLabel', 'My Account')}
-            profileSettingsLink={text('profileSettingsLink', '#')}
-            onSignOutClick={action('sign out clicked')}
-            signOutLabel={text('signOutLabel', 'Logout')}
-            signOutLink={text('signOutLink', '/signout')}
-          />
-        </TopNav>
-        <ParagraphSlot />
-      </GlobalNav>
-    );
-  });
+  .addWithInfo('user configured', 'Set open state, events, ', () => (
+    <GlobalNav>
+      <TopNav logo={logo}>
+        <Profile
+          image={text('image', profileImage)}
+          name={text('name', 'Jane Designer')}
+          email={text('email', 'jane.designer@example.com')}
+          open={boolean('profileFlyoutOpen', false)}
+          onProfileClickOutside={action('Clicked outside profile')}
+          onProfileImageClick={action('profile image clicked')}
+          onProfileSettingsClick={action('profile settings clicked')}
+          profileSettingsLabel={text('profileSettingsLabel', 'My Account')}
+          profileSettingsLink={text('profileSettingsLink', '#')}
+          onSignOutClick={action('sign out clicked')}
+          signOutLabel={text('signOutLabel', 'Logout')}
+          signOutLink={text('signOutLink', '/signout')}
+        />
+      </TopNav>
+      <ParagraphSlot />
+    </GlobalNav>
+  ));

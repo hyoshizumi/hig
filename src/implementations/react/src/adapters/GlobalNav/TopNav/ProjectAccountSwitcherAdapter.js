@@ -1,12 +1,12 @@
-import * as PropTypes from "prop-types";
-import HIGElement from "../../../elements/HIGElement";
-import HIGNodeList from "../../../elements/HIGNodeList";
-import HIGChildValidator from "../../../elements/HIGChildValidator";
-import createComponent from "../../createComponent";
-import AccountComponent, { AccountAdapter } from "./AccountAdapter";
-import ProjectComponent, { ProjectAdapter } from "./ProjectAdapter";
-import Project from "../../../elements/components/GlobalNav/TopNav/Project";
-import Account from "../../../elements/components/GlobalNav/TopNav/Account";
+import * as PropTypes from 'prop-types';
+import HIGElement from '../../../elements/HIGElement';
+import HIGNodeList from '../../../elements/HIGNodeList';
+import HIGChildValidator from '../../../elements/HIGChildValidator';
+import createComponent from '../../createComponent';
+import AccountComponent, { AccountAdapter } from './AccountAdapter';
+import ProjectComponent, { ProjectAdapter } from './ProjectAdapter';
+import Project from '../../../elements/components/GlobalNav/TopNav/Project';
+import Account from '../../../elements/components/GlobalNav/TopNav/Account';
 
 export class ProjectAccountSwitcherAdapter extends HIGElement {
   constructor(HIGConstructor, initialProps) {
@@ -49,13 +49,13 @@ export class ProjectAccountSwitcherAdapter extends HIGElement {
     this.commitUpdate(this.props);
   }
 
-  commitUpdate(updatePayload, oldProps, newProp) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
 
       switch (propKey) {
-        case "open": {
+        case 'open': {
           if (propValue) {
             this.hig.open();
           } else {
@@ -63,7 +63,7 @@ export class ProjectAccountSwitcherAdapter extends HIGElement {
           }
           break;
         }
-        case "showCaret": {
+        case 'showCaret': {
           if (propValue) {
             this.hig.showCaret();
           } else {
@@ -71,51 +71,51 @@ export class ProjectAccountSwitcherAdapter extends HIGElement {
           }
           break;
         }
-        case "activeLabel": {
+        case 'activeLabel': {
           this.hig.setActiveLabel(propValue);
           break;
         }
-        case "activeType": {
+        case 'activeType': {
           this.hig.setActiveType(propValue);
           break;
         }
-        case "activeImage": {
+        case 'activeImage': {
           this.hig.setActiveImage(propValue);
           break;
         }
-        case "projectTitle": {
+        case 'projectTitle': {
           this.hig.setProjectTitle(propValue);
           break;
         }
-        case "accountTitle": {
+        case 'accountTitle': {
           this.hig.setAccountTitle(propValue);
           break;
         }
-        case "onClickOutside": {
-          const dispose = this._disposeFunctions.get("onClickOutsideDispose");
+        case 'onClickOutside': {
+          const dispose = this._disposeFunctions.get('onClickOutsideDispose');
 
           if (dispose) {
             dispose();
           }
 
           this._disposeFunctions.set(
-            "onClickOutisdeDispose",
+            'onClickOutisdeDispose',
             this.hig.onClickOutside(propValue)
           );
           break;
         }
-        case "onClick": {
-          const dispose = this._disposeFunctions.get("onClick");
+        case 'onClick': {
+          const dispose = this._disposeFunctions.get('onClick');
 
           if (dispose) {
             dispose();
           }
 
-          this._disposeFunctions.set("onClick", this.hig.onClick(propValue));
+          this._disposeFunctions.set('onClick', this.hig.onClick(propValue));
           break;
         }
-        case "children": {
-          //no-op
+        case 'children': {
+          // no-op
           break;
         }
         default: {
@@ -136,7 +136,7 @@ export class ProjectAccountSwitcherAdapter extends HIGElement {
     }
   }
 
-  insertBefore(instance, beforeChild = {}) {
+  insertBefore(instance) {
     if (instance instanceof AccountAdapter) {
       this.accounts.insertBefore(instance);
     } else if (instance instanceof ProjectAdapter) {
@@ -176,28 +176,30 @@ ProjectAccountSwitcherComponent.propTypes = {
 ProjectAccountSwitcherComponent.__docgenInfo = {
   props: {
     open: {
-      description: "{bool} opens the project/account switcher"
+      description: '{bool} opens the project/account switcher'
     },
     showCaret: {
-      description: "shows a caret indicating a flyout in Project Account Switcher"
+      description: 'shows a caret indicating a flyout in Project Account Switcher'
     },
     activeLabel: {
-      description: "Sets the label displayed in the top nav"
+      description: 'Sets the label displayed in the top nav'
     },
     activeImage: {
-      description: "Sets the image displayed in the top nav"
+      description: 'Sets the image displayed in the top nav'
     },
     activeType: {
-      description: "Sets the type of the item displayed in the top nav"
+      description: 'Sets the type of the item displayed in the top nav'
     },
     onClickOutside: {
-      description: "Calls the provided callback when the switcher is open and the user clicks outside the switcher"
+      description:
+        'Calls the provided callback when the switche' +
+        'is open and the user clicks outside the switcher'
     },
     onClick: {
-      description: "Calls the provided callback when user clicks on the switcher in the top nav"
+      description: 'Calls the provided callback when user clicks on the switcher in the top nav'
     },
     children: {
-      description: "support adding Project and Account"
+      description: 'support adding Project and Account'
     }
   }
 };

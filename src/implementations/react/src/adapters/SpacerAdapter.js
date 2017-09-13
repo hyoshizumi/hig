@@ -8,7 +8,7 @@ import Slot from './SlotAdapter';
 
 class SpacerAdapter extends HIGElement {
   constructor(initialProps) {
-    super(HIG.Spacer, initialProps)
+    super(HIG.Spacer, initialProps);
   }
 
   componentDidMount() {
@@ -17,7 +17,7 @@ class SpacerAdapter extends HIGElement {
     }
   }
 
-  commitUpdate(updatePayload, oldProps, newProps) {
+  commitUpdate(updatePayload) {
     for (let i = 0; i < updatePayload.length; i += 2) {
       const propKey = updatePayload[i];
       const propValue = updatePayload[i + 1];
@@ -32,11 +32,11 @@ class SpacerAdapter extends HIGElement {
           this.hig.setInset(propValue);
           break;
         case 'children': {
-          //no-op
+          // no-op
           break;
         }
         default:
-          console.warn('Unknown key, not handled: ', propKey);
+          // no-op
       }
     }
   }
@@ -79,7 +79,8 @@ SpacerAdapterComponent.__docgenInfo = {
       description: "{String - 'none', 'xxs', 'xs', 's', 'm', 'l' 'xl', 'xxl'} width of the spacer"
     },
     inset: {
-      description: "{String - 'none', 'xxs', 'xs', 's', 'm', 'l' 'xl', 'xxl'} width of the spacer inset"
+      description: `{String - 'none', 'xxs', 'xs', 's', 'm', 'l' 'xl', 'xxl'}
+                    width of the spacer inset`
     },
     children: {
       description: 'support adding Slot component'

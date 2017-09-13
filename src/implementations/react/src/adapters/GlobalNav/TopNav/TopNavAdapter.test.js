@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types, no-console */
 import { mount } from 'enzyme';
 import * as HIG from 'hig-vanilla';
 import React from 'react';
@@ -7,23 +8,28 @@ import TopNavAdapter from './TopNavAdapter';
 import ProfileAdapter from './ProfileAdapter';
 import SearchAdapter from './SearchAdapter';
 
-const Context = props => {
-  return (
-    <GlobalNavAdapter>
-      <TopNavAdapter>
-        <SearchAdapter
-          placeholder={props.placeholder}
-          query={props.query}
-          onInput={props.onInput}
-          onFocusIn={props.onFocusIn}
-          onFocusOut={props.onFocusOut}
-        />
-      </TopNavAdapter>
-    </GlobalNavAdapter>
-  );
-};
+const Context = props => (
+  <GlobalNavAdapter>
+    <TopNavAdapter>
+      <SearchAdapter
+        placeholder={props.placeholder}
+        query={props.query}
+        onInput={props.onInput}
+        onFocusIn={props.onFocusIn}
+        onFocusOut={props.onFocusOut}
+      />
+    </TopNavAdapter>
+  </GlobalNavAdapter>
+);
 
 describe('<TopNav>', () => {
+  // Create the GlobalNav context for the TopNav to be attached to
+  const defaults = {
+    logo: '../../../bim-logo.png',
+    logoLink: 'http://www.autodesk.com'
+  };
+
+  const profileDefaults = { image: '../../../bim-logo.png' };
   function createHigNav() {
     const domContainer = document.createElement('div');
     const higNav = new HIG.GlobalNav();
@@ -38,13 +44,6 @@ describe('<TopNav>', () => {
     higNav.addTopNav(topNav);
     return { topNav, higNav, domContainer };
   }
-
-  // Create the GlobalNav context for the TopNav to be attached to
-  let defaults = {
-    logo: '../../../bim-logo.png',
-    logoLink: 'http://www.autodesk.com'
-  };
-  let profileDefaults = { image: '../../../bim-logo.png' };
 
   it('renders a topnav', () => {
     const reactContainer = document.createElement('div');
@@ -86,7 +85,7 @@ describe('<TopNav>', () => {
   }
 
   it('can render Search programmatically', () => {
-    const { topNav, higNav, domContainer } = createTopNav();
+    const { topNav, domContainer } = createTopNav();
     const props = {
       placeholder: 'enter some text',
       query: 'foobar',
