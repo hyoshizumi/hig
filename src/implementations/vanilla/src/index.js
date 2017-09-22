@@ -1,4 +1,5 @@
 const Hig = {};
+const translations = {};
 
 Hig.Avatar = require('./components/avatar/avatar.js');
 Hig.Button = require('./components/button/button.js');
@@ -35,5 +36,18 @@ Hig.breakpoints = require('./basics/responsive/responsive');
 Hig.colors = require('./basics/colors/colors.js');
 
 Hig.sizes = Hig.Spacer.SizeMap;
+Hig.i18n = require('i18next');
+
+['en', 'ja'].forEach(lang =>
+  translations[lang] = {
+    translation: require('./locales/' + lang + '/translation.json')
+  }
+);
+
+Hig.i18n.init({
+  lng: 'en',
+  debug: true,
+  resources: translations
+});
 
 module.exports = Hig;
