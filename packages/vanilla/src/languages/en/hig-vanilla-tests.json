@@ -2,6 +2,19 @@
   "sample" : {
     "hello_world": "Hello, world!"
   },
+  "button" : {
+    "all_event_log_btn": "All event are logged in console",
+    "disabled_btn": "Disabled Button",
+    "disabled_with_event_btn": "Disabled, but events are still triggered!",
+    "event_disposed_btn": "Events disposed button, no events should fire",
+    "flat_button_title": "Flat Button",
+    "js_event_test_title": "Javascript Event Tests",
+    "large_size_btn": "Large Size",
+    "primary_button_title": "Primary Button",
+    "secondary_button_title": "Secondary Button",
+    "small_size_btn": "Small Size",
+    "standard_size_btn": "Standard Size"
+  },
   "flyout" : {
     "open_default_btn": "Open default flyout",
     "open_setter_btn": "Open setter flyout"

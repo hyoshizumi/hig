@@ -2,6 +2,15 @@
   "sample" : {
     "hello_world": "ようこそ、世界！"
   },
+  "button" : {
+    "primary_button_title": "主要ボタン",
+    "secondary_button_title": "副次ボタン",
+    "flat_button_title": "Flat Button",
+    "standard_size_btn": "標準サイズ",
+    "small_size_btn": "小さいサイズ",
+    "large_size_btn": "大きいサイズ",
+    "disabled_btn": "無効のボタン"
+  },
   "flyout" : {
     "open_default_btn": "既定のフライアウトを開く",
     "open_setter_btn": "セッターフライアウトを開く"

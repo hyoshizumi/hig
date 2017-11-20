@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang='en'>
+<html lang='ja'>
     <head>
         <link rel="stylesheet" href="../../../../lib/hig.css">
         <script type="text/javascript" src="../../../../lib/hig.js"></script>
@@ -70,14 +70,14 @@
         </div>
         <script>
             var i18next = Hig.i18next;
-            i18next.changeLanguage('en');
+            i18next.changeLanguage('ja');
 
             // ----------------------------
             // PRIMARY BUTTON
             // ----------------------------
 
             var TitlePrimaryButton = new Hig.Typography({
-                "text": i18next.t("button.primary_button_title"),
+                "text": i18next.t("button.primary_btn"),
                 "type": "h2"
             });
 
@@ -133,7 +133,7 @@
             // ----------------------------
 
             var TitleSecondaryButton = new Hig.Typography({
-                "text": i18next.t("button.secondary_button_title"),
+                "text": i18next.t("button.secondary_btn"),
                 "type": "h2"
             });
 
@@ -194,7 +194,7 @@
             // ----------------------------
 
             var TitleFlatButton = new Hig.Typography({
-                "text": i18next.t("button.flat_button_title"),
+                "text": "Flat Button",
                 "type": "h2"
             });
 
@@ -203,7 +203,7 @@
             // Standard Size
 
             var FlatStandardSize = new Hig.Button({
-                "title": i18next.t("button.standard_size_btn"),
+                "title": "Standard Size",
                 "type": "flat"
             });
 
@@ -212,7 +212,7 @@
             // Standard Size with icon
 
             var FlatStandardSizeWithIcon = new Hig.Button({
-                "title": i18next.t("button.standard_size_btn"),
+                "title": "Standard Size",
                 "type": "flat",
                 "icon": "settings"
             });
@@ -222,7 +222,7 @@
             // Small Size
 
             var FlatSmallSize = new Hig.Button({
-                "title": i18next.t("button.small_size_btn"),
+                "title": "Small Size",
                 "type": "flat",
                 "size": "small"
             });
@@ -232,7 +232,7 @@
             // Large Size
 
             var FlatlargeSize = new Hig.Button({
-                "title": i18next.t("button.large_size_btn"),
+                "title": "Large Size",
                 "type": "flat",
                 "size": "large"
             });
@@ -242,7 +242,7 @@
             // Large Size
 
             var FlatDisable = new Hig.Button({
-                "title": i18next.t("button.disabled_btn"),
+                "title": "Disabled Button",
                 "type": "flat"
             });
 
@@ -255,7 +255,7 @@
             // ----------------------------
 
             var TitleJS = new Hig.Typography({
-                "text": i18next.t("button.js_event_test_title"),
+                "text": "Javascript Event Tests",
                 "type": "h2"
             });
 
@@ -264,7 +264,7 @@
             // Regular event callback tests
 
             var EventsButton = new Hig.Button({
-                "title": i18next.t("button.all_event_log_btn")
+                "title": "All event are logged in console"
             });
 
             EventsButton.mount(".test-js-events");
@@ -286,7 +286,7 @@
             // Disabled event callback tests
 
             var EventsDisabledButton = new Hig.Button({
-                "title": i18next.t("button.disabled_with_event_btn")
+                "title": "Disabled, but events are still triggered!"
             });
 
             EventsDisabledButton.mount(".test-js-disable");
@@ -311,7 +311,7 @@
             // Hover or Click should not register
 
             var EventDisposeButton = new Hig.Button({
-                "title": i18next.t("button.event_disposed_btn"),
+                "title": "Events disposed button, no events should fire",
                 "link": "#"
             });
 
